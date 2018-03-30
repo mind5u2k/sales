@@ -51,27 +51,9 @@
 		<c:if test="${userClickHome == true }">
 			<%@include file="home.jsp"%>
 		</c:if>
-		<c:if test="${userClickAbout == true }">
-			<%@include file="about.jsp"%>
-		</c:if>
-		<c:if test="${userClickContact == true }">
-			<%@include file="contact.jsp"%>
-		</c:if>
-		<c:if
-			test="${userClickAllProducts == true or userClickCategoryProducts == true }">
-			<%@include file="listProducts1.jsp"%>
-		</c:if>
-		<c:if test="${userClickShowProduct == true}">
-			<%@include file="singleProduct1.jsp"%>
-		</c:if>
-		<c:if test="${userClickManageProduct == true}">
-			<%@include file="manageProduct1.jsp"%>
-		</c:if>
-		<c:if test="${userClickShowCart == true}">
-			<%@include file="cart.jsp"%>
-		</c:if>
+
 	</div>
-	<%@include file="./shared/footer1.jsp"%>
+	<%@include file="./shared/footer.jsp"%>
 
 	<script>
 		if (!window.jQuery.ui) {
