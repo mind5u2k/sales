@@ -1,0 +1,53 @@
+package net.ghosh.sales.controller;
+
+import javax.servlet.http.HttpSession;
+
+import net.ghosh.sales.model.UserModel;
+import net.ghosh.salesBackend.dao.UserDAO;
+import net.ghosh.salesBackend.dto.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+@ControllerAdvice
+public class GlobalController {
+
+	@Autowired
+	private UserDAO userDAO;
+
+	@Autowired
+	private HttpSession session;
+
+	private UserModel userModel = null;
+	private User user = null;
+
+	@ModelAttribute("userModel")
+	public UserModel getUserModel() {
+		if (session.getAttribute("userModel") == null) {
+			// get the authentication object
+			Authentication authentication = SecurityContextHolder.getContext()
+					.getAuthentication();
+
+			if (!authentication.getPrincipal().equals("anonymousUser")) {
+				// get the user from the database
+				user = userDAO.getByEmail(authentication.getName());
+
+				if (user != null) {
+					userModel = new UserModel();
+					userModel.setId(user.getId());
+					userModel.setFullName(user.getFirstName() + " "
+							+ user.getLastName());
+					userModel.setRole(user.getRole());
+					session.setAttribute("userModel", userModel);
+					return userModel;
+				}
+			}
+		}
+
+		return (UserModel) session.getAttribute("userModel");
+	}
+
+}
