@@ -13,19 +13,6 @@
 			<div
 				class="jarviswidget jarviswidget-color-blue jarviswidget-sortable"
 				id="wid-id-1" data-widget-editbutton="false" role="widget">
-				<!-- widget options:
-								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-				
-								data-widget-colorbutton="false"
-								data-widget-editbutton="false"
-								data-widget-togglebutton="false"
-								data-widget-deletebutton="false"
-								data-widget-fullscreenbutton="false"
-								data-widget-custombutton="false"
-								data-widget-collapsed="true"
-								data-widget-sortable="false"
-				
-								-->
 				<header role="heading">
 					<div class="jarviswidget-ctrls" role="menu">
 						<a href="javascript:void(0);"
@@ -208,8 +195,6 @@
 	</div>
 </div>
 <script type="text/javascript">
-	// DO NOT REMOVE : GLOBAL FUNCTIONS!
-
 	$(document).ready(
 			function() {
 

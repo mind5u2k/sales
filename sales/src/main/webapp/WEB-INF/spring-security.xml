@@ -19,7 +19,7 @@
 	<http>
 		<!-- only admin access -->
 		<intercept-url pattern="/login" access="permitAll" />
-		<intercept-url pattern="/manage/**" access="hasAuthority('ADMIN')" />
+		<intercept-url pattern="/su/**" access="hasAuthority('SUPER ADMIN')" />
 		<intercept-url pattern="/cart/**" access="hasAuthority('USER')" />
 
 		<intercept-url pattern="/**"

@@ -35,93 +35,13 @@
 			style="cursor: pointer;"
 			onclick="window.location.href='${contextRoot}/home'"
 			class="glyphicon glyphicon-book"></span> </span>
-		<%-- <span id="logo"> <img style="width: 64px; cursor: pointer;"
-			onclick="window.location.href='${contextRoot}/home'"
-			src="${images}/ibmlogo.png" alt="SmartAdmin">
-		</span> --%>
-		<!-- <span id="activity" class="activity-dropdown" style="color: #313131;">
-		<i class="fa fa-user"></i>
-	</span> -->
-		<%-- <div class="ajax-dropdown" style="display: none; height: auto;">
-		<div class="btn-group btn-group-justified" data-toggle="buttons">
-			<label class="btn btn-default"> <input type="radio"
-				name="activity" id="ajax/notify/mail.html">User Info
-			</label>
-		</div>
-		<div class=" "></div>
-		<table style="display: table; width: 100%;">
-			<tbody>
-				<tr style="border-bottom: 1px solid #ccc; background: #eaeaea;">
-					<td style="padding: 4px 0px 4px 14px;">Name</td>
-					<td style="padding: 4px"><%=session.getAttribute("UserName")%></td>
-				</tr>
-				<tr style="border-bottom: 1px solid #ccc; background: #f7f6f6;">
-					<td style="padding: 4px 0px 4px 14px;">E-Mail</td>
-					<td style="padding: 4px"><%=session.getAttribute("mailid")%></td>
-				</tr>
-				<tr style="border-bottom: 1px solid #ccc; background: #eaeaea;">
-					<td style="padding: 4px 0px 4px 14px;">Role</td>
-					<td style="padding: 4px"><%=session.getAttribute("ComplianceRole")%></td>
-				</tr>
-				<tr style="border-bottom: 1px solid #ccc; background: #f7f6f6;">
-					<td style="padding: 4px 0px 4px 14px;">Access</td>
-					<td style="padding: 4px"><%=session.getAttribute("Access")%></td>
-				</tr>
-			</tbody>
-		</table>
-	</div> --%>
 	</div>
 	<div class="hidden-xs" style="border-left: 1px solid #000;">
 		<div style="border-left: 2px solid #4e4d4d; height: 100%;">
-			SALES
-			<!-- <form action="search.html" class="header-search pull-right">
-				<span role="status" aria-live="polite"
-					class="ui-helper-hidden-accessible"></span><input id="search-fld"
-					type="text" name="param" placeholder="Find reports and more"
-					style="min-width: 310px;"
-					data-autocomplete="[
-					&quot;ActionScript&quot;,
-					&quot;AppleScript&quot;,
-					&quot;Asp&quot;,
-					&quot;BASIC&quot;,
-					&quot;C&quot;,
-					&quot;C++&quot;,
-					&quot;Clojure&quot;,
-					&quot;COBOL&quot;,
-					&quot;ColdFusion&quot;,
-					&quot;Erlang&quot;,
-					&quot;Fortran&quot;,
-					&quot;Groovy&quot;,
-					&quot;Haskell&quot;,
-					&quot;Java&quot;,
-					&quot;JavaScript&quot;,
-					&quot;Lisp&quot;,
-					&quot;Perl&quot;,
-					&quot;PHP&quot;,
-					&quot;Python&quot;,
-					&quot;Ruby&quot;,
-					&quot;Scala&quot;,
-					&quot;Scheme&quot;]"
-					class="ui-autocomplete-input" autocomplete="off">
-				<button type="submit">
-					<i class="fa fa-search"></i>
-				</button>
-				<a href="javascript:void(0);" id="cancel-search-js"
-					title="Cancel Search"><i class="fa fa-times"></i></a>
-			</form> -->
-			<!-- <span id="logo" style="color: #fff; font-size: 16px; width: auto;">
-			Compliance Dashboard </span> -->
-		</div>
+			SALES</div>
 	</div>
 
 	<div class="pull-right">
-
-		<!-- collapse menu button -->
-
-		<!-- end collapse menu -->
-
-		<!-- #MOBILE -->
-		<!-- Top menu profile link : this shows only when top menu is active -->
 		<ul id="mobile-profile-img"
 			class="header-dropdown-list hidden-xs padding-5">
 			<li class=""><a href="#"
@@ -153,8 +73,6 @@
 							<strong><u>L</u>ogout</strong></a></li>
 				</ul></li>
 		</ul>
-
-		<!-- logout button -->
 		<div id="logout" class="btn-header transparent pull-right">
 			<span> <a href="${contextRoot}/logout" title="Sign Out"
 				data-action="userLogout"
@@ -162,15 +80,11 @@
 					class="fa fa-sign-out"></i></a>
 			</span>
 		</div>
-
 		<div id="hide-menu" class="btn-header pull-right">
 			<span> <a href="javascript:void(0);" data-action="toggleMenu"
 				title="Collapse Menu"><i class="fa fa-reorder"></i></a>
 			</span>
 		</div>
-
-
-
 		<div id="fullscreen" class="btn-header transparent pull-right">
 			<span> <a href="javascript:void(0);"
 				data-action="launchFullscreen" title="Full Screen"><i
@@ -197,17 +111,18 @@
 			</div>
 			<div class="col-sm-6"
 				style="padding: 5px 0 5px 0px; text-align: center;">
-				<a class="btn btn-danger" href="#" style="margin: 0;">Profile</a> <a
-					class="btn btn-danger" href="#">Profile</a>
+				<a class="btn btn-danger" href="#" style="margin: 0; color: #fff;">Profile</a>
+				<a class="btn btn-success" href="#" style="color: #fff;">Profile</a>
 			</div>
 		</div>
 	</div>
 	<nav>
 		<ul>
 			<li id="home"><a href="${contextRoot}/home"><i
-					class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a></li>
+					class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home
+						Page</span></a></li>
 			<security:authorize access="hasAuthority('SUPER ADMIN')">
-				<li id="users"><a href="${contextRoot}/su/product"><i
+				<li id="users"><a href="${contextRoot}/su/user"><i
 						class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">User</span></a></li>
 			</security:authorize>
 

@@ -125,7 +125,7 @@
 					</c:if>
 					<div class="well no-padding"
 						style="border: 1px solid #717070; box-shadow: 0px 0px 0px #a8a5a5;">
-						<form action="${contextRoot}/login" method="POST" id="login-form"
+						<form action="${contextRoot}/login" method="POST" id="loginForm"
 							class="smart-form client-form" novalidate="novalidate">
 							<header style="background: #716f6f !important; color: #fff;">
 								Sign In </header>
@@ -196,7 +196,6 @@
 	<script src="${js}/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
 	<script src="${js}/app.min.js"></script>
 	<script src="${js}/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
-	<script src="${contextPath}/comDash/complianceDashMyApp.js"></script>
 	<script src="${js}/myapp.js"></script>
 	<!-- jQuery -->
 

@@ -51,7 +51,9 @@
 		<c:if test="${userClickHome == true }">
 			<%@include file="home.jsp"%>
 		</c:if>
-
+		<c:if test="${userClickUserManagement == true }">
+			<%@include file="user.jsp"%>
+		</c:if>
 	</div>
 	<%@include file="./shared/footer.jsp"%>
 
