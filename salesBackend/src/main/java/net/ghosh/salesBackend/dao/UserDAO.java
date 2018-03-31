@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.ghosh.salesBackend.dto.Address;
 import net.ghosh.salesBackend.dto.User;
+import net.ghosh.salesBackend.dto.UserMapping;
 
 public interface UserDAO {
 
@@ -14,7 +15,13 @@ public interface UserDAO {
 
 	boolean add(User user);
 
+	boolean addUserMapping(UserMapping userMapping);
+
+	User addUser(User user);
+
 	List<User> getAllUsers();
+
+	List<UserMapping> getSubUsersByUser(User admin, String role);
 
 	// adding and updating a new address
 	Address getAddress(int addressId);

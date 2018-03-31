@@ -20,17 +20,22 @@ $(function() {
 	case 'Users':
 		$('#users').addClass('active');
 		break;
-	case 'Contact Us':
-		$('#contact').addClass('active');
+	case 'SalesManager':
+		$("#adminUserBlock").css("display", "block");
+		$('#salesManager').addClass('active');
 		break;
-	case 'All Products':
-		$('#listProducts').addClass('active');
+	case 'SalesOrganizer':
+		$("#adminUserBlock").css("display", "block");
+		$('#salesOrganization').addClass('active');
+		break;
+	case 'SalesRepresentatives':
+		$('#salesRepresentatives').addClass('active');
+		break;
+	case 'Clients':
+		$('#clients').addClass('active');
 		break;
 	case 'Product Management':
 		$('#manageProduct').addClass('active');
-		break;
-	case 'Shopping Cart':
-		$('#userModel').addClass('active');
 		break;
 	default:
 		if (menu == "Home")
@@ -59,6 +64,9 @@ $(function() {
 	var $checkoutForm = $('#checkout-form').validate({
 		// Rules for form validation
 		rules : {
+			organizationName : {
+				required : true
+			},
 			firstName : {
 				required : true
 			},
@@ -98,6 +106,9 @@ $(function() {
 
 		// Messages for form validation
 		messages : {
+			organizationName : {
+				required : 'Please enter Organization name'
+			},
 			firstName : {
 				required : 'Please enter your first name'
 			},

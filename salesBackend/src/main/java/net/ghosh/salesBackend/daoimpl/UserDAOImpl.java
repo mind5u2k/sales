@@ -5,6 +5,7 @@ import java.util.List;
 import net.ghosh.salesBackend.dao.UserDAO;
 import net.ghosh.salesBackend.dto.Address;
 import net.ghosh.salesBackend.dto.User;
+import net.ghosh.salesBackend.dto.UserMapping;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,26 @@ public class UserDAOImpl implements UserDAO {
 			return true;
 		} catch (Exception ex) {
 			return false;
+		}
+	}
+
+	@Override
+	public boolean addUserMapping(UserMapping userMapping) {
+		try {
+			sessionFactory.getCurrentSession().persist(userMapping);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
+	}
+
+	@Override
+	public User addUser(User user) {
+		try {
+			sessionFactory.getCurrentSession().persist(user);
+			return user;
+		} catch (Exception ex) {
+			return null;
 		}
 	}
 
@@ -110,6 +131,15 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> getAllUsers() {
 		return sessionFactory.getCurrentSession()
 				.createQuery("FROM User", User.class).getResultList();
+	}
+
+	@Override
+	public List<UserMapping> getSubUsersByUser(User admin, String role) {
+		String selectQuery = "FROM UserMapping WHERE superUser.id = :userId AND role = :role";
+		return sessionFactory.getCurrentSession()
+				.createQuery(selectQuery, UserMapping.class)
+				.setParameter("userId", admin.getId())
+				.setParameter("role", role).getResultList();
 	}
 
 }

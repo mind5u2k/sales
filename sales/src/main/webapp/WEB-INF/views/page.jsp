@@ -54,6 +54,18 @@
 		<c:if test="${userClickUserManagement == true }">
 			<%@include file="user.jsp"%>
 		</c:if>
+		<c:if test="${userClickSaledManagerManagement == true }">
+			<%@include file="salesManager.jsp"%>
+		</c:if>
+		<c:if test="${userClickSaledOrganizerManagement == true }">
+			<%@include file="salesOrganizer.jsp"%>
+		</c:if>
+		<c:if test="${userClickSaledRepresentativeManagement == true }">
+			<%@include file="salesRepresentatives.jsp"%>
+		</c:if>
+		<c:if test="${userClickClientsManagement == true }">
+			<%@include file="clients.jsp"%>
+		</c:if>
 	</div>
 	<%@include file="./shared/footer.jsp"%>
 

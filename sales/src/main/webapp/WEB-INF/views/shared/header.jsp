@@ -7,7 +7,7 @@
 .login-info {
 	display: block;
 	font-size: 12px;
-	height: 140px;
+	height: 150px;
 	color: #fff;
 	border: solid transparent;
 	border-width: 1px 0;
@@ -38,7 +38,9 @@
 	</div>
 	<div class="hidden-xs" style="border-left: 1px solid #000;">
 		<div style="border-left: 2px solid #4e4d4d; height: 100%;">
-			SALES</div>
+			<%-- <span id="logo" style="color: #fff; font-size: 16px; width: auto;">
+				Sales - ${userModel.role}</span> --%>
+		</div>
 	</div>
 
 	<div class="pull-right">
@@ -99,7 +101,8 @@
 		<div class="col-sm-12"
 			style="padding: 5px 0 5px 0px; text-align: center;">
 			<span> <a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <span>${userModel.fullName}</span>
+				data-action="toggleShortcut"> <span>${userModel.fullName}<br>${userModel.role}
+				</span>
 			</a></span>
 		</div>
 		<div class="col-sm-12"
@@ -128,22 +131,29 @@
 
 
 			<security:authorize access="hasAuthority('ADMIN')">
-				<li id="manageProduct"><a href="${contextRoot}/manage/product"><i
-						class="fa fa-lg fa-fw fa-reorder"></i> <span
-						class="menu-item-parent">Manage Products</span></a></li>
+				<li id="adminUsers"><a href="#"><i
+						class="fa fa-lg fa-fw fa-bank"></i> <span class="menu-item-parent">Users</span><b
+						class="collapse-sign"><em class="fa fa-minus-square-o"></em></b></a>
+					<ul id="adminUserBlock" style="display: none;">
+						<li id="salesManager"><a
+							href="${contextRoot}/ad/salesManager">Sales Manager</a></li>
+						<li id="salesOrganization"><a
+							href="${contextRoot}/ad/salesOrganization">Sales Organization</a></li>
+					</ul></li>
+				<li id="products"><a href="${contextRoot}/ad/products"><i
+						class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Products</span></a></li>
+			</security:authorize>
 
-				<li id="about"><a href="${contextRoot}/about"><i
-						class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">About</span></a></li>
-				<li id="contact"><a href="${contextRoot}/contact"><i
-						class="fa fa-lg fa-fw fa-phone"></i> <span
-						class="menu-item-parent">Contact</span></a></li>
-				<!-- 	<li id="ComplianceSocrecard"><a href="ComplianceScorecard"><i
-					class="fa fa-lg fa-fw fa-sitemap"></i> <span
-					class="menu-item-parent">Categories</span></a></li> -->
-				<li id="listProducts"><a
-					href="${contextRoot}/show/all/products"><i
-						class="fa fa-lg fa-fw fa-laptop"></i> <span
-						class="menu-item-parent">Products</span></a></li>
+			<security:authorize access="hasAuthority('SALES MANAGER')">
+				<li id="salesRepresentatives"><a
+					href="${contextRoot}/sm/salesRepresentatives"><i
+						class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Sales
+							Representatives</span></a></li>
+			</security:authorize>
+
+			<security:authorize access="hasAuthority('SALES REPRESENTATIVE')">
+				<li id="clients"><a href="${contextRoot}/sr/clients"><i
+						class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Clients</span></a></li>
 			</security:authorize>
 
 			<li><div class="minifyme"

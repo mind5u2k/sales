@@ -23,7 +23,7 @@
 		<intercept-url pattern="/cart/**" access="hasAuthority('USER')" />
 
 		<intercept-url pattern="/**"
-			access="hasAnyAuthority('SUPER ADMIN','ADMIN','SALES MANAGER','SALES ORGANIZATOIN','SALES REPRESENTATIVE','USER')" />
+			access="hasAnyAuthority('SUPER ADMIN','ADMIN','SALES MANAGER','SALES ORGANIZER','SALES REPRESENTATIVE','CLIENT')" />
 		<form-login login-page="/login" default-target-url="/home"
 			always-use-default-target="true" />
 		<access-denied-handler error-page="/access-denied" />

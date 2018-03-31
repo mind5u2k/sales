@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 @Entity
 @Table(name = "user_detail")
 public class User implements Serializable {
@@ -43,6 +41,8 @@ public class User implements Serializable {
 	private String confirmPassword;
 
 	private String gender;
+
+	private String organizationName;
 
 	public String getConfirmPassword() {
 		return confirmPassword;
@@ -130,6 +130,14 @@ public class User implements Serializable {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public String getOrganizationName() {
+		return organizationName;
+	}
+
+	public void setOrganizationName(String organizationName) {
+		this.organizationName = organizationName;
 	}
 
 }
