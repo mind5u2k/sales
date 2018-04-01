@@ -27,7 +27,7 @@ public class Product {
 	private double quarterlyPrice;
 	private double halfYearlyPrice;
 	private double annualPrice;
-	private boolean active;
+	private boolean active = true;
 
 	public int getId() {
 		return id;

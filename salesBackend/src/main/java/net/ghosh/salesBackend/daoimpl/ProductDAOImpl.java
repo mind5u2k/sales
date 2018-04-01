@@ -2,14 +2,15 @@ package net.ghosh.salesBackend.daoimpl;
 
 import java.util.List;
 
+import net.ghosh.salesBackend.dao.ProductDAO;
+import net.ghosh.salesBackend.dto.AssignedProducts;
 import net.ghosh.salesBackend.dto.Product;
+import net.ghosh.salesBackend.dto.User;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import UserDAO.ProductDAO;
 
 @Repository("productDAO")
 @Transactional
@@ -61,6 +62,37 @@ public class ProductDAOImpl implements ProductDAO {
 				.createQuery(selectQuery, Product.class)
 				.setParameter("active", true).getResultList();
 
+	}
+
+	@Override
+	public List<Product> getAllActiveProductsByAdmin(User admin) {
+		String selectQuery = "FROM Product WHERE admin.id=:adminId AND active = :active ORDER BY id DESC";
+		return sessionFactory.getCurrentSession()
+				.createQuery(selectQuery, Product.class)
+				.setParameter("active", true)
+				.setParameter("adminId", admin.getId()).getResultList();
+
+	}
+
+	@Override
+	public List<AssignedProducts> getAllAssignedProductsBySalesRepresentative(
+			User salesRepresentative) {
+		String selectQuery = "FROM AssignedProducts WHERE salesRepresentative.id = :id ORDER BY id DESC";
+		return sessionFactory.getCurrentSession()
+				.createQuery(selectQuery, AssignedProducts.class)
+				.setParameter("id", salesRepresentative.getId())
+				.getResultList();
+
+	}
+
+	@Override
+	public AssignedProducts assignProduct(AssignedProducts product) {
+		try {
+			sessionFactory.getCurrentSession().persist(product);
+			return product;
+		} catch (Exception ex) {
+			return null;
+		}
 	}
 
 }

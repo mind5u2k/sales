@@ -2,7 +2,7 @@ package net.ghosh.sales.controller;
 
 import java.util.List;
 
-import net.ghosh.sales.util.Util;
+import net.ghosh.salesBackend.Util;
 import net.ghosh.salesBackend.dao.UserDAO;
 import net.ghosh.salesBackend.dto.User;
 import net.ghosh.salesBackend.dto.UserMapping;

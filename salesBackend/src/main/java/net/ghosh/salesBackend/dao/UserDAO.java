@@ -23,6 +23,12 @@ public interface UserDAO {
 
 	List<UserMapping> getSubUsersByUser(User admin, String role);
 
+	User getAdminOfSalesManager(User salesManager);
+
+	User getSalesManagerOfSalesRepresentative(User salesRepresentative);
+
+	User getSalesRepresentativeOfClient(User client);
+
 	// adding and updating a new address
 	Address getAddress(int addressId);
 

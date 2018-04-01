@@ -2,6 +2,7 @@ package net.ghosh.salesBackend.daoimpl;
 
 import java.util.List;
 
+import net.ghosh.salesBackend.Util;
 import net.ghosh.salesBackend.dao.UserDAO;
 import net.ghosh.salesBackend.dto.Address;
 import net.ghosh.salesBackend.dto.User;
@@ -140,6 +141,62 @@ public class UserDAOImpl implements UserDAO {
 				.createQuery(selectQuery, UserMapping.class)
 				.setParameter("userId", admin.getId())
 				.setParameter("role", role).getResultList();
+	}
+
+	@Override
+	public User getAdminOfSalesManager(User salesManager) {
+		String selectQuery = "FROM UserMapping WHERE user.id = :userId AND role = :role";
+		try {
+			UserMapping userMapping = sessionFactory.getCurrentSession()
+					.createQuery(selectQuery, UserMapping.class)
+					.setParameter("userId", salesManager.getId())
+					.setParameter("role", Util.ROLE_SALESMANAGER)
+					.getSingleResult();
+			if (userMapping != null) {
+				return userMapping.getSuperUser();
+			} else {
+				return null;
+			}
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+
+	@Override
+	public User getSalesManagerOfSalesRepresentative(User salesRepresentative) {
+		String selectQuery = "FROM UserMapping WHERE user.id = :userId AND role = :role";
+		try {
+			UserMapping userMapping = sessionFactory.getCurrentSession()
+					.createQuery(selectQuery, UserMapping.class)
+					.setParameter("userId", salesRepresentative.getId())
+					.setParameter("role", Util.ROLE_SALESREPRESENTATIVE)
+					.getSingleResult();
+			if (userMapping != null) {
+				return userMapping.getSuperUser();
+			} else {
+				return null;
+			}
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+
+	@Override
+	public User getSalesRepresentativeOfClient(User client) {
+		String selectQuery = "FROM UserMapping WHERE user.id = :userId AND role = :role";
+		try {
+			UserMapping userMapping = sessionFactory.getCurrentSession()
+					.createQuery(selectQuery, UserMapping.class)
+					.setParameter("userId", client.getId())
+					.setParameter("role", Util.ROLE_CLIENT).getSingleResult();
+			if (userMapping != null) {
+				return userMapping.getSuperUser();
+			} else {
+				return null;
+			}
+		} catch (Exception ex) {
+			return null;
+		}
 	}
 
 }

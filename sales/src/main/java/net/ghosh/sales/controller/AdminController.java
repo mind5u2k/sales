@@ -2,7 +2,8 @@ package net.ghosh.sales.controller;
 
 import java.util.List;
 
-import net.ghosh.sales.util.Util;
+import net.ghosh.salesBackend.Util;
+import net.ghosh.salesBackend.dao.ProductDAO;
 import net.ghosh.salesBackend.dao.UserDAO;
 import net.ghosh.salesBackend.dto.Product;
 import net.ghosh.salesBackend.dto.User;
@@ -18,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import UserDAO.ProductDAO;
 
 @Controller
 @RequestMapping("/ad")

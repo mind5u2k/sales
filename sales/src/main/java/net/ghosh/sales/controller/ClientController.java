@@ -1,5 +1,6 @@
 package net.ghosh.sales.controller;
 
+import net.ghosh.salesBackend.dao.ProductDAO;
 import net.ghosh.salesBackend.dao.UserDAO;
 import net.ghosh.salesBackend.dto.User;
 
@@ -10,8 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import UserDAO.ProductDAO;
 
 @Controller
 @RequestMapping("/cl")

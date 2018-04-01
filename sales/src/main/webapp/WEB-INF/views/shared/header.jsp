@@ -153,6 +153,10 @@
 			<security:authorize access="hasAuthority('SALES REPRESENTATIVE')">
 				<li id="clients"><a href="${contextRoot}/sr/clients"><i
 						class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Clients</span></a></li>
+				<li id="assignProducts"><a
+					href="${contextRoot}/sr/assignProducts"><i
+						class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Assign
+							Products</span></a></li>
 			</security:authorize>
 
 			<li><div class="minifyme"

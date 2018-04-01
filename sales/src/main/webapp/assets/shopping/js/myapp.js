@@ -37,6 +37,9 @@ $(function() {
 	case 'Products':
 		$('#products').addClass('active');
 		break;
+	case 'Assign Products':
+		$('#assignProducts').addClass('active');
+		break;
 	default:
 		if (menu == "Home")
 			break;

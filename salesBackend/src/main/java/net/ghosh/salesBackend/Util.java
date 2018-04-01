@@ -1,4 +1,4 @@
-package net.ghosh.sales.util;
+package net.ghosh.salesBackend;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,4 +25,8 @@ public class Util {
 		roles.add(ROLE_SALESORGANIZER);
 		return roles;
 	}
+
+	public static final String STATUS_TRIAL = "Trial";
+	public static final String STAUS_LIVE = "Live";
+	public static final String STATUS_DEACTIVATE = "Deactivated";
 }

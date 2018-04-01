@@ -78,6 +78,9 @@
 		<c:if test="${userClickSaledRepresentativeManagement == true }">
 			<%@include file="salesRepresentatives.jsp"%>
 		</c:if>
+		<c:if test="${userClickAssignProductManagementHome == true }">
+			<%@include file="assignProducts.jsp"%>
+		</c:if>
 		<c:if test="${userClickClientsManagement == true }">
 			<%@include file="clients.jsp"%>
 		</c:if>

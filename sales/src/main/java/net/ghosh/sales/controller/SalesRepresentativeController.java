@@ -1,9 +1,13 @@
 package net.ghosh.sales.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import net.ghosh.sales.util.Util;
+import net.ghosh.salesBackend.Util;
+import net.ghosh.salesBackend.dao.ProductDAO;
 import net.ghosh.salesBackend.dao.UserDAO;
+import net.ghosh.salesBackend.dto.AssignedProducts;
+import net.ghosh.salesBackend.dto.Product;
 import net.ghosh.salesBackend.dto.User;
 import net.ghosh.salesBackend.dto.UserMapping;
 
@@ -33,6 +37,9 @@ public class SalesRepresentativeController {
 
 	@Autowired
 	private UserDAO userDAO;
+
+	@Autowired
+	private ProductDAO productDAO;
 
 	@RequestMapping("/home")
 	public ModelAndView home() {
@@ -92,4 +99,70 @@ public class SalesRepresentativeController {
 		}
 	}
 
+	@RequestMapping("/assignProducts")
+	public ModelAndView assignProducts(
+			@RequestParam(name = "status", required = false) String status) {
+		ModelAndView mv = new ModelAndView("page");
+		User salesRepresentative = userDAO.getByEmail(globalController
+				.getUserModel().getEmail());
+		mv.addObject("title", "Assign Products");
+
+		if (status != null) {
+			if (status.equals("success")) {
+				mv.addObject("success", "User has been added successfully");
+			} else if (status.equals("failure")) {
+				mv.addObject("failure", "Getting Error while Adding a New User");
+			}
+		}
+
+		// ====== Main Page ==================
+		List<AssignedProducts> assignedProducts = productDAO
+				.getAllAssignedProductsBySalesRepresentative(salesRepresentative);
+		mv.addObject("assignedProducts", assignedProducts);
+
+		// ================New assigned product ================
+		AssignedProducts assignedProduct = new AssignedProducts();
+		assignedProduct.setStatus(Util.STATUS_TRIAL);
+		assignedProduct.setTrialPeriod(10);
+		mv.addObject("assignedProduct", assignedProduct);
+		List<UserMapping> userMappings = userDAO.getSubUsersByUser(
+				salesRepresentative, Util.ROLE_CLIENT);
+		List<User> clients = new ArrayList<User>();
+		if (userMappings != null) {
+			for (UserMapping m : userMappings) {
+				clients.add(m.getUser());
+			}
+		}
+
+		mv.addObject("clients", clients);
+		User admin = userDAO.getAdminOfSalesManager(userDAO
+				.getSalesManagerOfSalesRepresentative(salesRepresentative));
+		List<Product> products = productDAO.getAllActiveProductsByAdmin(admin);
+		mv.addObject("products", products);
+		mv.addObject("userClickAssignProductManagementHome", true);
+		return mv;
+	}
+
+	@RequestMapping(value = "/saveAssignedProduct", method = RequestMethod.POST)
+	public String saveAssignedProduct(
+			@ModelAttribute("assignedProduct") AssignedProducts assignedProduct) {
+
+		User salesRepresentative = userDAO.getByEmail(globalController
+				.getUserModel().getEmail());
+
+		assignedProduct.setClient(userDAO.get(assignedProduct.getClient()
+				.getId()));
+		assignedProduct.setProduct(productDAO.get(assignedProduct.getProduct()
+				.getId()));
+		assignedProduct.setSalesRepresentative(salesRepresentative);
+		assignedProduct.setStatus(Util.STATUS_TRIAL);
+		AssignedProducts addedAssignedProduct = productDAO
+				.assignProduct(assignedProduct);
+
+		if (addedAssignedProduct != null) {
+			return "redirect:/sr/assignProducts?status=success";
+		} else {
+			return "redirect:/sr/assignProducts?status=failure";
+		}
+	}
 }
