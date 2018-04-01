@@ -48,8 +48,23 @@
 	class="desktop-detected voice-command-active service-not-allowed pace-done fixed-header fixed-navigation">
 	<%@include file="./shared/header.jsp"%>
 	<div id="main" role="main">
-		<c:if test="${userClickHome == true }">
-			<%@include file="home.jsp"%>
+		<c:if test="${userClickSuperAdminHome == true }">
+			<%@include file="superAdminHome.jsp"%>
+		</c:if>
+		<c:if test="${userClickAdminHome == true }">
+			<%@include file="adminHome.jsp"%>
+		</c:if>
+		<c:if test="${userClickSalesManagerHome == true }">
+			<%@include file="salesManagerHome.jsp"%>
+		</c:if>
+		<c:if test="${userClickSalesOrganizerHome == true }">
+			<%@include file="salesOrganizerHome.jsp"%>
+		</c:if>
+		<c:if test="${userClickSalesRepresentativeHome == true }">
+			<%@include file="salesRepresentativeHome.jsp"%>
+		</c:if>
+		<c:if test="${userClickClientHome == true }">
+			<%@include file="clientHome.jsp"%>
 		</c:if>
 		<c:if test="${userClickUserManagement == true }">
 			<%@include file="user.jsp"%>
@@ -65,6 +80,9 @@
 		</c:if>
 		<c:if test="${userClickClientsManagement == true }">
 			<%@include file="clients.jsp"%>
+		</c:if>
+		<c:if test="${userClickProductManagement == true }">
+			<%@include file="products.jsp"%>
 		</c:if>
 	</div>
 	<%@include file="./shared/footer.jsp"%>

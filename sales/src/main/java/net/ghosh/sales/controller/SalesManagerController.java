@@ -33,6 +33,17 @@ public class SalesManagerController {
 	@Autowired
 	private UserDAO userDAO;
 
+	@RequestMapping("/home")
+	public ModelAndView home() {
+		ModelAndView mv = new ModelAndView("page");
+		User salesManager = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+
+		mv.addObject("title", "Home");
+		mv.addObject("userClickSalesManagerHome", true);
+		return mv;
+	}
+
 	@RequestMapping("/salesRepresentatives")
 	public ModelAndView salesRepresentatives(
 			@RequestParam(name = "status", required = false) String status) {

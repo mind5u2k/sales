@@ -34,8 +34,8 @@ $(function() {
 	case 'Clients':
 		$('#clients').addClass('active');
 		break;
-	case 'Product Management':
-		$('#manageProduct').addClass('active');
+	case 'Products':
+		$('#products').addClass('active');
 		break;
 	default:
 		if (menu == "Home")
@@ -73,6 +73,9 @@ $(function() {
 			lastName : {
 				required : true
 			},
+			productName : {
+				required : true
+			},
 			email : {
 				required : true,
 				email : true
@@ -101,6 +104,9 @@ $(function() {
 			},
 			Gender : {
 				required : true
+			},
+			description : {
+				required : true
 			}
 		},
 
@@ -114,6 +120,9 @@ $(function() {
 			},
 			lastName : {
 				required : 'Please enter your last name'
+			},
+			productName : {
+				required : 'Please enter the Product Name'
 			},
 			email : {
 				required : 'Please enter your email address',
@@ -143,6 +152,9 @@ $(function() {
 			},
 			Gender : {
 				required : 'Please select Gender'
+			},
+			description : {
+				required : 'Please enter Description'
 			}
 		},
 

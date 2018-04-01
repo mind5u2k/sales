@@ -1,17 +1,30 @@
 package net.ghosh.sales.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.ghosh.sales.util.Util;
+import net.ghosh.salesBackend.dao.UserDAO;
+import net.ghosh.salesBackend.dto.Product;
+import net.ghosh.salesBackend.dto.User;
+import net.ghosh.salesBackend.dto.UserMapping;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import UserDAO.ProductDAO;
 
 @Controller
 public class PageController {
@@ -19,19 +32,42 @@ public class PageController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(PageController.class);
 
+	@Autowired
+	private GlobalController globalController;
+
+	@Autowired
+	private UserDAO userDAO;
+
+	@Autowired
+	private ProductDAO productDAO;
+
 	@RequestMapping(value = { "/", "/home", "/index" })
-	public ModelAndView index(
+	public String index(
 			@RequestParam(name = "logout", required = false) String logout) {
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Home");
 
 		logger.info("Inside PageController index method - INFO");
 		logger.debug("Inside PageController index method - DEBUG");
 		if (logout != null) {
-			mv.addObject("message", "You have successfully logged out!");
+			return "redirect:/logout";
 		}
-		mv.addObject("userClickHome", true);
-		return mv;
+
+		User user = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+		if (user.getRole().equals(Util.ROLE_SUPERADMIN)) {
+			return "redirect:/su/home";
+		} else if (user.getRole().equals(Util.ROLE_ADMIN)) {
+			return "redirect:/ad/home";
+		} else if (user.getRole().equals(Util.ROLE_SALESMANAGER)) {
+			return "redirect:/sm/home";
+		} else if (user.getRole().equals(Util.ROLE_SALESORGANIZER)) {
+			return "redirect:/so/home";
+		} else if (user.getRole().equals(Util.ROLE_SALESREPRESENTATIVE)) {
+			return "redirect:/sr/home";
+		} else if (user.getRole().equals(Util.ROLE_CLIENT)) {
+			return "redirect:/cl/home";
+		} else {
+			return null;
+		}
 	}
 
 	@RequestMapping(value = "/about")
@@ -99,6 +135,39 @@ public class PageController {
 		mv.addObject("errorDescription",
 				"You are not authorized to view this page!");
 		mv.addObject("title", "403 Access Denied");
+		return mv;
+	}
+
+	@RequestMapping("/products")
+	public ModelAndView products(
+			@RequestParam(name = "status", required = false) String status) {
+		ModelAndView mv = new ModelAndView("page");
+		User user = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+		mv.addObject("title", "Products");
+		mv.addObject("userClickProductManagement", true);
+		if (status != null) {
+			if (status.equals("success")) {
+				mv.addObject("success", "Product has been added successfully");
+			} else if (status.equals("failure")) {
+				mv.addObject("failure",
+						"Getting Error while Adding a New Product");
+			}
+		}
+
+		Product product = new Product();
+		mv.addObject("product", product);
+
+		List<Product> products = new ArrayList<Product>();
+
+		if (user.getRole().equals(Util.ROLE_ADMIN)
+				|| user.getRole().equals(Util.ROLE_SUPERADMIN)) {
+			products = productDAO.getAllProducts();
+		} else {
+			products = productDAO.getAllActiveProducts();
+		}
+
+		mv.addObject("products", products);
 		return mv;
 	}
 

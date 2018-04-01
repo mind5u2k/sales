@@ -100,8 +100,7 @@
 		style="background: linear-gradient(to bottom, #2d2c2c, #797878);">
 		<div class="col-sm-12"
 			style="padding: 5px 0 5px 0px; text-align: center;">
-			<span> <a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <span>${userModel.fullName}<br>${userModel.role}
+			<span> <a href="javascript:void(0);"> <span>${userModel.fullName}<br>${userModel.role}
 				</span>
 			</a></span>
 		</div>
@@ -140,7 +139,7 @@
 						<li id="salesOrganization"><a
 							href="${contextRoot}/ad/salesOrganization">Sales Organization</a></li>
 					</ul></li>
-				<li id="products"><a href="${contextRoot}/ad/products"><i
+				<li id="products"><a href="${contextRoot}/products"><i
 						class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Products</span></a></li>
 			</security:authorize>
 

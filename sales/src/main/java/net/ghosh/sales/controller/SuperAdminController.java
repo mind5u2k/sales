@@ -31,10 +31,24 @@ public class SuperAdminController {
 			.getLogger(SuperAdminController.class);
 
 	@Autowired
+	private GlobalController globalController;
+
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private UserDAO userDAO;
+
+	@RequestMapping("/home")
+	public ModelAndView home() {
+		ModelAndView mv = new ModelAndView("page");
+		User superAdmin = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+
+		mv.addObject("title", "Home");
+		mv.addObject("userClickSuperAdminHome", true);
+		return mv;
+	}
 
 	@RequestMapping("/user")
 	public ModelAndView Users(

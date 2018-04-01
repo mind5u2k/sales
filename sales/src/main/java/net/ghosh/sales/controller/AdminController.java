@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.ghosh.sales.util.Util;
 import net.ghosh.salesBackend.dao.UserDAO;
+import net.ghosh.salesBackend.dto.Product;
 import net.ghosh.salesBackend.dto.User;
 import net.ghosh.salesBackend.dto.UserMapping;
 
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import UserDAO.ProductDAO;
 
 @Controller
 @RequestMapping("/ad")
@@ -33,6 +36,20 @@ public class AdminController {
 
 	@Autowired
 	private UserDAO userDAO;
+
+	@Autowired
+	private ProductDAO productDAO;
+
+	@RequestMapping("/home")
+	public ModelAndView home() {
+		ModelAndView mv = new ModelAndView("page");
+		User admin = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+
+		mv.addObject("title", "Home");
+		mv.addObject("userClickAdminHome", true);
+		return mv;
+	}
 
 	@RequestMapping("/salesManager")
 	public ModelAndView Users(
@@ -127,4 +144,21 @@ public class AdminController {
 			return "redirect:/ad/salesOrganization?status=failure";
 		}
 	}
+
+	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
+	public String addProduct(@ModelAttribute("product") Product product) {
+
+		User admin = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+
+		product.setAdmin(admin);
+		Product savedProduct = productDAO.addProduct(product);
+
+		if (savedProduct != null) {
+			return "redirect:/products?status=success";
+		} else {
+			return "redirect:/products?status=failure";
+		}
+	}
+
 }

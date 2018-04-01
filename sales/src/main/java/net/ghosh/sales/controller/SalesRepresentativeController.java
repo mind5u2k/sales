@@ -34,6 +34,17 @@ public class SalesRepresentativeController {
 	@Autowired
 	private UserDAO userDAO;
 
+	@RequestMapping("/home")
+	public ModelAndView home() {
+		ModelAndView mv = new ModelAndView("page");
+		User salesRepresentative = userDAO.getByEmail(globalController
+				.getUserModel().getEmail());
+
+		mv.addObject("title", "Home");
+		mv.addObject("userClickSalesRepresentativeHome", true);
+		return mv;
+	}
+
 	@RequestMapping("/clients")
 	public ModelAndView clients(
 			@RequestParam(name = "status", required = false) String status) {
