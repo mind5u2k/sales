@@ -37,12 +37,20 @@ public class User implements Serializable {
 
 	private String password;
 	private boolean enabled = true;
+
+	private String dob;
+
 	@Transient
 	private String confirmPassword;
 
 	private String gender;
 
 	private String organizationName;
+
+	private boolean twoStepVerfication = false;
+	private boolean allDeatilsStatus = false;
+
+	private String verificationCode;
 
 	public String getConfirmPassword() {
 		return confirmPassword;
@@ -138,6 +146,38 @@ public class User implements Serializable {
 
 	public void setOrganizationName(String organizationName) {
 		this.organizationName = organizationName;
+	}
+
+	public boolean isTwoStepVerfication() {
+		return twoStepVerfication;
+	}
+
+	public void setTwoStepVerfication(boolean twoStepVerfication) {
+		this.twoStepVerfication = twoStepVerfication;
+	}
+
+	public boolean isAllDeatilsStatus() {
+		return allDeatilsStatus;
+	}
+
+	public void setAllDeatilsStatus(boolean allDeatilsStatus) {
+		this.allDeatilsStatus = allDeatilsStatus;
+	}
+
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+
+	public String getDob() {
+		return dob;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
 	}
 
 }

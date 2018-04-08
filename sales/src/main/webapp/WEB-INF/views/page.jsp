@@ -87,6 +87,15 @@
 		<c:if test="${userClickProductManagement == true }">
 			<%@include file="products.jsp"%>
 		</c:if>
+		<c:if test="${userClickClientPaymentDetails == true }">
+			<%@include file="paymentDeatils.jsp"%>
+		</c:if>
+		<c:if test="${userClickClientPaymentConfirmation == true }">
+			<%@include file="paymentConfirmation.jsp"%>
+		</c:if>
+		<c:if test="${userClickClientCheckoutform == true }">
+			<%@include file="checkout.jsp"%>
+		</c:if>
 	</div>
 	<%@include file="./shared/footer.jsp"%>
 
@@ -100,9 +109,11 @@
 	<script src="${js}/bootstrap/bootstrap.min.js"></script>
 	<script src="${js}/notification/SmartNotification.min.js"></script>
 	<script src="${js}/plugin/jquery-validate/jquery.validate.min.js"></script>
+	<script src="${js}/plugin/masked-input/jquery.maskedinput.min.js"></script>
 	<script src="${js}/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
 	<script src="${js}/app.min.js"></script>
 	<script src="${js}/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script src="${js}/plugin/jquery-form/jquery-form.min.js"></script>
 	<script src="${js}/myapp.js"></script>
 </body>
 </html>

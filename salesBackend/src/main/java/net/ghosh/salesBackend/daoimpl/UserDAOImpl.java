@@ -5,6 +5,7 @@ import java.util.List;
 import net.ghosh.salesBackend.Util;
 import net.ghosh.salesBackend.dao.UserDAO;
 import net.ghosh.salesBackend.dto.Address;
+import net.ghosh.salesBackend.dto.Company;
 import net.ghosh.salesBackend.dto.User;
 import net.ghosh.salesBackend.dto.UserMapping;
 
@@ -64,6 +65,16 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public boolean updateUser(User user) {
+		try {
+			sessionFactory.getCurrentSession().update(user);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
+	}
+
+	@Override
 	public boolean addAddress(Address address) {
 		try {
 			// will look for this code later and why we need to change it
@@ -85,23 +96,24 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<Address> listShippingAddresses(int userId) {
-		String selectQuery = "FROM Address WHERE userId = :userId AND shipping = :isShipping ORDER BY id DESC";
-		return sessionFactory.getCurrentSession()
-				.createQuery(selectQuery, Address.class)
-				.setParameter("userId", userId)
-				.setParameter("isShipping", true).getResultList();
-
-	}
-
-	@Override
-	public Address getBillingAddress(int userId) {
-		String selectQuery = "FROM Address WHERE userId = :userId AND billing = :isBilling";
+	public Address getAddressByUser(int userId) {
+		String selectQuery = "FROM Address WHERE user.id = :userId";
 		try {
 			return sessionFactory.getCurrentSession()
 					.createQuery(selectQuery, Address.class)
-					.setParameter("userId", userId)
-					.setParameter("isBilling", true).getSingleResult();
+					.setParameter("userId", userId).getSingleResult();
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+
+	@Override
+	public Company getCompanyByUserId(int userId) {
+		String selectQuery = "FROM Company WHERE client.id = :userId";
+		try {
+			return sessionFactory.getCurrentSession()
+					.createQuery(selectQuery, Company.class)
+					.setParameter("userId", userId).getSingleResult();
 		} catch (Exception ex) {
 			return null;
 		}
@@ -196,6 +208,27 @@ public class UserDAOImpl implements UserDAO {
 			}
 		} catch (Exception ex) {
 			return null;
+		}
+	}
+
+	@Override
+	public boolean addCompany(Company company) {
+		try {
+			// will look for this code later and why we need to change it
+			sessionFactory.getCurrentSession().persist(company);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean updateCompany(Company company) {
+		try {
+			sessionFactory.getCurrentSession().update(company);
+			return true;
+		} catch (Exception ex) {
+			return false;
 		}
 	}
 

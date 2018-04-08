@@ -84,6 +84,7 @@ public class SalesRepresentativeController {
 
 		user.setRole(Util.ROLE_CLIENT);
 		user.setPassword(passwordEncoder.encode("admin@123"));
+		user.setVerificationCode(Util.generateVerificationCode());
 		User addeduser = userDAO.addUser(user);
 
 		UserMapping userMapping = new UserMapping();

@@ -2,6 +2,7 @@ package net.ghosh.salesBackend;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Util {
 
@@ -27,6 +28,22 @@ public class Util {
 	}
 
 	public static final String STATUS_TRIAL = "Trial";
-	public static final String STAUS_LIVE = "Live";
+	public static final String STAUS_ACTIVE = "Active";
 	public static final String STATUS_DEACTIVATE = "Deactivated";
+
+	private static final int MAX_VERIFICATION_CODE = 100000;
+	private static final int MIN_VERIFICATION_CODE = 999999;
+
+	public static String generateVerificationCode() {
+		Random rand = new Random();
+		Integer code = rand.nextInt(MIN_VERIFICATION_CODE
+				- MAX_VERIFICATION_CODE + 1)
+				+ MAX_VERIFICATION_CODE;
+		return code.toString();
+	}
+
+	public static void main(String[] args) {
+		System.out.println("generated verification code is ---");
+		System.out.println(generateVerificationCode());
+	}
 }

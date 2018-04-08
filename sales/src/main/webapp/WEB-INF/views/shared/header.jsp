@@ -7,7 +7,7 @@
 .login-info {
 	display: block;
 	font-size: 12px;
-	height: 150px;
+	height: 125px;
 	color: #fff;
 	border: solid transparent;
 	border-width: 1px 0;
@@ -26,6 +26,18 @@
 
 .minified .login-info>div {
 	display: none;
+}
+
+.login-info a span {
+	text-transform: capitalize;
+	font-size: 14px;
+	display: inline-block;
+	text-decoration: none;
+	max-width: 132px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
 }
 </style>
 <header id="header" style="background: #313131 !important;">
@@ -98,23 +110,33 @@
 <aside id="left-panel" style="background: #464545 !important;">
 	<div class="login-info row"
 		style="background: linear-gradient(to bottom, #2d2c2c, #797878);">
-		<div class="col-sm-12"
+		<%-- 	<div class="col-sm-12"
 			style="padding: 5px 0 5px 0px; text-align: center;">
 			<span> <a href="javascript:void(0);"> <span>${userModel.fullName}<br>${userModel.role}
 				</span>
 			</a></span>
+		</div> --%>
+		<div class="col-sm-12"
+			style="padding: 5px 0 5px 0px; text-align: center;">
+			<div class="col-sm-4"
+				style="padding: 5px 0 5px 0px; text-align: center;">
+				<img src="${images}/male.png" alt="me" class=""
+					style="width: 45px; border: 0;">
+			</div>
+			<div class="col-sm-8"
+				style="padding: 5px 0 5px 0px; text-align: center;">
+				<span> <a style="margin: 0;"> <span>${userModel.fullName}<br>${userModel.role}
+					</span>
+				</a></span>
+			</div>
 		</div>
 		<div class="col-sm-12"
 			style="padding: 5px 0 5px 0px; text-align: center;">
-			<div class="col-sm-6"
-				style="padding: 5px 0 5px 0px; text-align: center;">
-				<img src="${images}/male.png" alt="me" class=""
-					style="width: 65px; border: 0;">
-			</div>
-			<div class="col-sm-6"
+			<div class="col-sm-12"
 				style="padding: 5px 0 5px 0px; text-align: center;">
 				<a class="btn btn-danger" href="#" style="margin: 0; color: #fff;">Profile</a>
-				<a class="btn btn-success" href="#" style="color: #fff;">Profile</a>
+				<a class="btn btn-success" href="#" style="margin: 0; color: #fff;">Update
+					Password</a>
 			</div>
 		</div>
 	</div>

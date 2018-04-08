@@ -1,6 +1,7 @@
 package net.ghosh.salesBackend.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,9 +26,14 @@ public class AssignedProducts implements Serializable {
 
 	@ManyToOne
 	private Product product;
+
 	private String status;
+	private Date startdate;
+	private Date endDate;
 	private int trialPeriod;
 	private String paymentDuration;
+
+	private boolean termsAndCondition;
 
 	public int getId() {
 		return id;
@@ -83,5 +89,29 @@ public class AssignedProducts implements Serializable {
 
 	public void setPaymentDuration(String paymentDuration) {
 		this.paymentDuration = paymentDuration;
+	}
+
+	public Date getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public boolean isTermsAndCondition() {
+		return termsAndCondition;
+	}
+
+	public void setTermsAndCondition(boolean termsAndCondition) {
+		this.termsAndCondition = termsAndCondition;
 	}
 }

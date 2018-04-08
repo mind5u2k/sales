@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.ghosh.salesBackend.dao.ProductDAO;
 import net.ghosh.salesBackend.dto.AssignedProducts;
+import net.ghosh.salesBackend.dto.Company;
 import net.ghosh.salesBackend.dto.Product;
 import net.ghosh.salesBackend.dto.User;
 
@@ -65,6 +66,17 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public AssignedProducts getAssignedProductById(int id) {
+		try {
+			return sessionFactory.getCurrentSession().get(
+					AssignedProducts.class, id);
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}
+	}
+
+	@Override
 	public List<Product> getAllActiveProductsByAdmin(User admin) {
 		String selectQuery = "FROM Product WHERE admin.id=:adminId AND active = :active ORDER BY id DESC";
 		return sessionFactory.getCurrentSession()
@@ -86,12 +98,31 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public List<AssignedProducts> getAssignedProducts(User client) {
+		String selectQuery = "FROM AssignedProducts WHERE client.id = :id ORDER BY id DESC";
+		return sessionFactory.getCurrentSession()
+				.createQuery(selectQuery, AssignedProducts.class)
+				.setParameter("id", client.getId()).getResultList();
+
+	}
+
+	@Override
 	public AssignedProducts assignProduct(AssignedProducts product) {
 		try {
 			sessionFactory.getCurrentSession().persist(product);
 			return product;
 		} catch (Exception ex) {
 			return null;
+		}
+	}
+
+	@Override
+	public boolean updateAssignedProduct(AssignedProducts assignedProduct) {
+		try {
+			sessionFactory.getCurrentSession().update(assignedProduct);
+			return true;
+		} catch (Exception ex) {
+			return false;
 		}
 	}
 

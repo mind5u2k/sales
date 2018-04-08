@@ -3,6 +3,7 @@ package net.ghosh.salesBackend.dao;
 import java.util.List;
 
 import net.ghosh.salesBackend.dto.Address;
+import net.ghosh.salesBackend.dto.Company;
 import net.ghosh.salesBackend.dto.User;
 import net.ghosh.salesBackend.dto.UserMapping;
 
@@ -18,6 +19,8 @@ public interface UserDAO {
 	boolean addUserMapping(UserMapping userMapping);
 
 	User addUser(User user);
+
+	boolean updateUser(User user);
 
 	List<User> getAllUsers();
 
@@ -36,8 +39,12 @@ public interface UserDAO {
 
 	boolean updateAddress(Address address);
 
-	Address getBillingAddress(int userId);
+	Address getAddressByUser(int userId);
 
-	List<Address> listShippingAddresses(int userId);
+	Company getCompanyByUserId(int userId);
+
+	boolean addCompany(Company company);
+
+	boolean updateCompany(Company company);
 
 }

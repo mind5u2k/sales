@@ -12,40 +12,31 @@ import javax.persistence.ManyToOne;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-public class Address implements Serializable {
+public class Company implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@ManyToOne
-	private User user; 
+	private User client;
 
-	private String addressStatus;
+	private String companyName;
 
-	@NotBlank(message = "Please enter address line one!")
-	@Column(name = "address_line_one")
+	private String companyUrl;
+
 	private String addressLineOne;
 
-	@NotBlank(message = "Please enter address line two!")
-	@Column(name = "address_line_two")
 	private String addressLineTwo;
 
-	@NotBlank(message = "Please enter City!")
 	private String city;
 
-	@NotBlank(message = "Please enter State!")
 	private String state;
 
-	@NotBlank(message = "Please enter country!")
 	private String country;
 
-	@Column(name = "postal_code")
-	@NotBlank(message = "Please enter Postal Code!")
 	private String postalCode;
 
 	public int getId() {
@@ -54,6 +45,30 @@ public class Address implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public User getClient() {
+		return client;
+	}
+
+	public void setClient(User client) {
+		this.client = client;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getCompanyUrl() {
+		return companyUrl;
+	}
+
+	public void setCompanyUrl(String companyUrl) {
+		this.companyUrl = companyUrl;
 	}
 
 	public String getAddressLineOne() {
@@ -102,31 +117,6 @@ public class Address implements Serializable {
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
-	}
-
-	@Override
-	public String toString() {
-		return "Address [id=" + id + ", addressLineOne=" + addressLineOne
-				+ ", addressLineTwo=" + addressLineTwo + ", city=" + city
-				+ ", state=" + state + ", country=" + country + ", postalCode="
-				+ postalCode + "zg]";
-	}
- 
-
-	public String getAddressStatus() {
-		return addressStatus;
-	}
-
-	public void setAddressStatus(String addressStatus) {
-		this.addressStatus = addressStatus;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 }
