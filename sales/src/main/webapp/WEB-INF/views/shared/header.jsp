@@ -50,8 +50,8 @@
 	</div>
 	<div class="hidden-xs" style="border-left: 1px solid #000;">
 		<div style="border-left: 2px solid #4e4d4d; height: 100%;">
-			<%-- <span id="logo" style="color: #fff; font-size: 16px; width: auto;">
-				Sales - ${userModel.role}</span> --%>
+			<span id="logo" style="color: #fff; font-size: 16px; width: auto;">
+				SLATE</span>
 		</div>
 	</div>
 

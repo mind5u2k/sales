@@ -3,6 +3,6 @@
 		<i class="fa fa-check-square-o"></i> Email Verification completed
 	</div>
 	<div style="padding: 36px 0 0 0;">
-		<a class="btn btn-primary" href="PersonalInfo">Next</a>
+		<a class="btn btn-primary" href="home">Next</a>
 	</div>
 </div>

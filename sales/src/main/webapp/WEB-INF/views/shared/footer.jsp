@@ -1,7 +1,7 @@
 <div class="page-footer">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
-			<span class="txt-color-white">Sales <span class="hidden-xs">
+			<span class="txt-color-white">SLATE <span class="hidden-xs">
 					- Web Application Framework</span>
 			</span>
 		</div>

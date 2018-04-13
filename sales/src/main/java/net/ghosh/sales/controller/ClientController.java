@@ -1,22 +1,18 @@
 package net.ghosh.sales.controller;
 
-import java.lang.Thread.State;
 import java.util.List;
 
-import net.ghosh.sales.model.PersonalDetails;
 import net.ghosh.salesBackend.Util;
 import net.ghosh.salesBackend.dao.ProductDAO;
 import net.ghosh.salesBackend.dao.UserDAO;
 import net.ghosh.salesBackend.dto.Address;
 import net.ghosh.salesBackend.dto.AssignedProducts;
 import net.ghosh.salesBackend.dto.Company;
-import net.ghosh.salesBackend.dto.Product;
 import net.ghosh.salesBackend.dto.User;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
