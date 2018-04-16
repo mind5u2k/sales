@@ -168,8 +168,9 @@
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content" id="newUserBody">
-			<sf:form action="${contextRoot}/sr/addClients" modelAttribute="user"
-				id="checkout-form" cssClass="smart-form" method="post">
+			<sf:form action="${contextRoot}/sr/addClients"
+				modelAttribute="assignedProducts" id="checkout-form"
+				cssClass="smart-form" method="post">
 				<header
 					style="background: #ccc; margin: 0; padding: 10px 16px 10px 16px;">
 					Add Client</header>
@@ -178,13 +179,13 @@
 						<section class="col col-6">
 							<label class="label">First Name</label> <label class="input">
 								<i class="icon-append fa fa-user"></i> <sf:input type="text"
-									path="firstName" placeholder="First Name" />
+									path="client.firstName" placeholder="First Name" />
 							</label>
 						</section>
 						<section class="col col-6">
 							<label class="label">Last Name</label> <label class="input">
 								<i class="icon-append fa fa-user"></i> <sf:input type="text"
-									path="lastName" placeholder="Last Name" />
+									path="client.lastName" placeholder="Last Name" />
 							</label>
 						</section>
 					</div>
@@ -193,19 +194,68 @@
 						<section class="col col-6">
 							<label class="label">Email-ID</label> <label class="input">
 								<i class="icon-append fa fa-envelope-o"></i> <sf:input
-									type="text" path="email" placeholder="E-Mail" />
+									type="text" path="client.email" placeholder="E-Mail" />
 							</label>
 						</section>
 						<section class="col col-6">
 							<label class="label">Role</label> <label class="input"> <i
 								class="icon-append fa fa-user"></i> <sf:input type="text"
-									path="role" placeholder="Role" disabled="true"
+									path="client.role" placeholder="Role" disabled="true"
 									cssClass="disabled" />
 							</label>
 						</section>
 					</div>
 				</fieldset>
-
+				<header>Select Product</header>
+				<fieldset>
+					<div class="row">
+						<section class="col col-sm-8">
+							<label class="label">Product Name</label> <label class="select">
+								<i></i> <sf:select onchange="updatePriceValues();"
+									path="product.id" id="productId">
+									<option value="0" disabled="disabled" selected="selected">Product</option>
+									<sf:options items="${products}" itemLabel="productName"
+										itemValue="id" />
+								</sf:select>
+							</label>
+						</section>
+						<section class="col col-sm-4">
+							<label class="label">Tax</label> <label class="input"> <i
+								class="icon-append fa fa-inr"></i> <sf:input path="tax" />
+							</label>
+						</section>
+					</div>
+					<div class="row" id="priceValue">
+						<section class="col col-6">
+							<label class="label">Price (Monthly)</label> <label class="input">
+								<i class="icon-append fa fa-inr"></i> <input id="monthlyPrice"
+								name="monthlyPrice" placeholder="Product Name" type="number"
+								value="0.0" class="valid">
+							</label>
+						</section>
+						<section class="col col-6">
+							<label class="label">Price (Quarterly)</label> <label
+								class="input"> <i class="icon-append fa fa-inr"></i> <input
+								id="quarterlyPrice" name="quarterlyPrice"
+								placeholder="Product Name" type="number" value="0.0">
+							</label>
+						</section>
+						<section class="col col-6">
+							<label class="label">Price (Half Yearly)</label> <label
+								class="input"> <i class="icon-append fa fa-inr"></i> <input
+								id="halfYearlyPrice" name="halfYearlyPrice"
+								placeholder="Product Name" type="number" value="0.0">
+							</label>
+						</section>
+						<section class="col col-6">
+							<label class="label">Price (Annually)</label> <label
+								class="input"> <i class="icon-append fa fa-inr"></i> <input
+								id="annualPrice" name="annualPrice" placeholder="Product Name"
+								type="number" value="0.0">
+							</label>
+						</section>
+					</div>
+				</fieldset>
 				<footer>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</footer>
@@ -280,6 +330,20 @@
 	function addNewUserModel() {
 		$('#newUserModel').modal({
 			show : true
+		});
+	}
+
+	function updatePriceValues() {
+		var procuctId = $("#productId").val();
+		$.ajax({
+			type : "GET",
+			url : "updatePrice?procuctId=" + procuctId,
+			success : function(response) {
+				$("#priceValue").html(response);
+			},
+			error : function(e) {
+				console.log('Error: ' + e);
+			}
 		});
 	}
 </script>

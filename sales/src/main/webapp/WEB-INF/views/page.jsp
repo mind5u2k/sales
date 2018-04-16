@@ -66,6 +66,9 @@
 		<c:if test="${userClickClientHome == true }">
 			<%@include file="clientHome.jsp"%>
 		</c:if>
+		<c:if test="${userClinkClinetHomeAssigned == true }">
+			<%@include file="clientHomeAssigned.jsp"%>
+		</c:if>
 		<c:if test="${userClickUserManagement == true }">
 			<%@include file="user.jsp"%>
 		</c:if>

@@ -16,7 +16,7 @@
 				data-widget-editbutton="false" data-widget-custombutton="false"
 				role="widget">
 				<header role="heading">
-					<h2>Checkout Form</h2>
+					<h2>Checkout</h2>
 					<span class="jarviswidget-loader"><i
 						class="fa fa-refresh fa-spin"></i></span>
 				</header>
@@ -30,14 +30,13 @@
 								<div class="col-xs-12" style="border-bottom: 0px solid #ccc;">
 									<div>
 										<span
-											style="font-size: 16px; padding: 0 0 0 0; margin: 0 0px 0 0px;">Moto
-											X4 (Sterling Blue, 64 GB) (6 GB RAM)</span> <br>Quantity -1 <br>Buying
-										Price - 24999.0/-
+											style="font-size: 16px; padding: 0 0 0 0; margin: 0 0px 0 0px;">${assignedProduct.product.productName}</span>
+										<br>Buying Price - ${assignedProduct.mainPrice}/-<br>Tax
+										- ${assignedProduct.tax} %
 									</div>
 									<div
 										style="background: #ccc; padding: 5px 5px 7px 8px; margin: 5px -9px 0px -9px;">
-										<span>Grand Total</span> <span style="float: right;">
-											24999.0/-</span>
+										<span>Grand Total</span> <span style="float: right;">${assignedProduct.totalPrice}/-</span>
 									</div>
 								</div>
 							</div>
@@ -118,13 +117,8 @@
 								<button type="submit" class="btn btn-primary">Pay</button>
 							</footer>
 						</form>
-
 					</div>
-					<!-- end widget content -->
-
 				</div>
-				<!-- end widget div -->
-
 			</div>
 		</article>
 	</div>

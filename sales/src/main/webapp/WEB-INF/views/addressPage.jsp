@@ -131,18 +131,20 @@
 									<sf:hidden path="id" />
 									<div class="wizard">
 										<ul class="steps">
-											<li data-target="#step1" class="active"><span
-												class="badge badge-info">1</span>Step 1<span class="chevron"></span>
-											</li>
-											<li data-target="#step2"><span class="badge">2</span>Step
-												2<span class="chevron"></span></li>
+											<li data-target="#step1"><span class="badge badge-info">1</span>Step
+												1<span class="chevron"></span></li>
+											<li data-target="#step2" class="active"><span
+												class="badge">2</span>Step 2<span class="chevron"></span></li>
 											<li data-target="#step3"><span class="badge">3</span>Step
 												3<span class="chevron"></span></li>
+											<li data-target="#step4"><span class="badge">4</span>Step
+												4<span class="chevron"></span></li>
 										</ul>
 										<div class="actions">
-											<button type="button" class="btn btn-sm btn-primary btn-prev">
+											<%-- <button type="button" class="btn btn-sm btn-primary btn-prev"
+												onclick="window.location.href='${contextRoot}/cl/home'">
 												<i class="fa fa-arrow-left"></i>Prev
-											</button>
+											</button> --%>
 											<button type="submit" class="btn btn-sm btn-success btn-next"
 												data-last="Finish">
 												Next <i class="fa fa-arrow-right"></i>
@@ -151,7 +153,9 @@
 									</div>
 									<div class="step-content">
 
-										<header> Address </header>
+										<header>
+											<strong>Step 2 - </strong> Address
+										</header>
 										<fieldset>
 											<section>
 												<label class="input"> <sf:input type="text"
@@ -232,7 +236,6 @@
 	<script src="${js}/plugin/jquery-form/jquery-form.min.js"></script>
 	<script
 		src="${js}/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
-	<script src="${js}/plugin/fuelux/wizard/wizard.min.js"></script>
 	<script src="${js}/myapp.js"></script>
 	<script>
 		$('#dob').datepicker({

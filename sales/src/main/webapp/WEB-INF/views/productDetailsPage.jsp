@@ -131,26 +131,28 @@
 									<sf:hidden path="id" />
 									<div class="wizard">
 										<ul class="steps">
-											<li data-target="#step1" class="active"><span
-												class="badge badge-info">1</span>Step 1<span class="chevron"></span>
-											</li>
+											<li data-target="#step1"><span class="badge badge-info">1</span>Step
+												1<span class="chevron"></span></li>
 											<li data-target="#step2"><span class="badge">2</span>Step
 												2<span class="chevron"></span></li>
 											<li data-target="#step3"><span class="badge">3</span>Step
 												3<span class="chevron"></span></li>
+											<li data-target="#step4" class="active"><span
+												class="badge">4</span>Step 4<span class="chevron"></span></li>
 										</ul>
 										<div class="actions">
-											<button type="button" class="btn btn-sm btn-primary btn-prev">
+											<!-- <button type="button" class="btn btn-sm btn-primary btn-prev">
 												<i class="fa fa-arrow-left"></i>Prev
-											</button>
-											<button type="submit" class="btn btn-sm btn-success btn-next"
-												data-last="Finish">
-												Next <i class="fa fa-arrow-right"></i>
+											</button> -->
+											<button type="submit" class="btn btn-sm btn-success btn-next"">
+												Finish <i class="fa fa-arrow-right"></i>
 											</button>
 										</div>
 									</div>
 									<div class="step-content">
-										<header> Product Details </header>
+										<header>
+											<strong>Step 4 - </strong> Product Details
+										</header>
 										<fieldset>
 											<div class="row" style="padding-bottom: 33px;">
 												<div class="col-lg-12">
@@ -216,7 +218,7 @@
 	<script src="${js}/plugin/jquery-form/jquery-form.min.js"></script>
 	<script
 		src="${js}/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
-	<script src="${js}/plugin/fuelux/wizard/wizard.min.js"></script>
+	<%-- <script src="${js}/plugin/fuelux/wizard/wizard.min.js"></script> --%>
 	<script src="${js}/myapp.js"></script>
 	<script>
 		$('#dob').datepicker({

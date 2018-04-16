@@ -67,24 +67,44 @@ public class SalesRepresentativeController {
 				mv.addObject("failure", "Getting Error while Adding a New User");
 			}
 		}
+
+		AssignedProducts assignedProducts = new AssignedProducts();
 		User user = new User();
+		assignedProducts.setClient(user);
+		assignedProducts.setSalesRepresentative(salesRepresentative);
 		user.setRole(Util.ROLE_CLIENT);
-		mv.addObject("user", user);
+		mv.addObject("assignedProducts", assignedProducts);
+		User admin = userDAO.getAdminOfSalesManager(userDAO
+				.getSalesManagerOfSalesRepresentative(salesRepresentative));
+		List<Product> products = productDAO.getAllActiveProductsByAdmin(admin);
+		mv.addObject("products", products);
 		List<UserMapping> clients = userDAO.getSubUsersByUser(
 				salesRepresentative, Util.ROLE_CLIENT);
 		mv.addObject("clients", clients);
 		return mv;
 	}
 
+	@RequestMapping("/updatePrice")
+	public ModelAndView updatePrice(
+			@RequestParam(name = "procuctId", required = false) int procuctId) {
+		System.out.println("selected product Id is [" + procuctId + "]");
+		ModelAndView mv = new ModelAndView("updatePrice");
+		Product product = productDAO.get(procuctId);
+		mv.addObject("product", product);
+		return mv;
+	}
+
 	@RequestMapping(value = "/addClients", method = RequestMethod.POST)
-	public String addClients(@ModelAttribute("user") User user) {
+	public String addClients(
+			@ModelAttribute("assignedProducts") AssignedProducts assignedProducts) {
 
 		User salesRepresentative = userDAO.getByEmail(globalController
 				.getUserModel().getEmail());
 
+		User user = new User();
+		user = assignedProducts.getClient();
 		user.setRole(Util.ROLE_CLIENT);
 		user.setPassword(passwordEncoder.encode("admin@123"));
-		user.setVerificationCode(Util.generateVerificationCode());
 		User addeduser = userDAO.addUser(user);
 
 		UserMapping userMapping = new UserMapping();
@@ -93,7 +113,15 @@ public class SalesRepresentativeController {
 		userMapping.setRole(Util.ROLE_CLIENT);
 		boolean status = userDAO.addUserMapping(userMapping);
 
-		if (addeduser != null && status) {
+		assignedProducts.setClient(addeduser);
+		assignedProducts.setProduct(productDAO.get(assignedProducts
+				.getProduct().getId()));
+		assignedProducts.setSalesRepresentative(salesRepresentative);
+		assignedProducts.setStatus(Util.STATUS_ASSIGNED);
+		AssignedProducts addedAssignedProduct = productDAO
+				.assignProduct(assignedProducts);
+
+		if (addeduser != null && status && addedAssignedProduct != null) {
 			return "redirect:/sr/clients?status=success";
 		} else {
 			return "redirect:/sr/clients?status=failure";

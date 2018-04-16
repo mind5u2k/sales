@@ -24,7 +24,8 @@
 					<div class="widget-body">
 						<div class="row">
 							<div class="col-lg-8" style="padding: 15px; font-size: 21px;">
-								<span class="page-title txt-color-blueDark"> My Products
+								<span class="page-title txt-color-blueDark"> <i
+									class="fa-fw fa fa-home"></i> My Products
 								</span> <a href="#" class="dropdown-toggle" data-toggle="dropdown"
 									aria-expanded="true"
 									style="font-size: 16px; padding: 10px 9px 9px 9px; border: 1px solid #7ba0c9; margin-left: 17px; box-shadow: 3px 3px 3px #679edc;">${assignedProduct.product.productName}
@@ -45,33 +46,24 @@
 								</ul>
 							</div>
 							<div class="col-lg-4"
-								style="padding: 15px; font-size: 18px; text-align: right;">
-								Status - <span class="text-warning"><i
-									class="fa fa-exclamation-triangle"></i> Trial</span>
-							</div>
+								style="padding: 15px; font-size: 18px; text-align: right;">Status
+								- Not Purchased</div>
 						</div>
-						<div class="row" style="text-align: center;">
-							<!-- <div class="col-lg-3"
-								style="font-size: 81px; padding: 0 0 0 0; text-align: center; border-right: 1px solid #ccc; color: #6a6464; margin-top: 19px;">
-								<i class="fa fa-cubes"></i>
-							</div> -->
+						<div class="row" style="padding: 15px; text-align: center;">
 							<div class="col-lg-12" style="padding: 15px;">
 								<span style="font-size: 18px; text-decoration: underline;">Statement
 									Overview</span>
 							</div>
-							<div class="col-lg-6" style="padding: 6px; font-size: 16px;">
-								!! You are in <span class="text-warning"><i
-									class="fa fa-exclamation-triangle"></i> Trail</span> Period !!<br>Please
-								purchase the product
-							</div>
-							<div class="col-lg-6" style="padding: 6px; font-size: 16px;">
-								Start Date : <span class="text-primary" style="font-size: 14px;">${assignedProduct.startdate}</span><br>End
-								Date : <span class="text-primary" style="font-size: 14px;">${assignedProduct.endDate}</span>
+							<div class="col-lg-12" style="padding: 6px;">
+								!! You have not purchased this product yet !!<br>Please
+								purchase this product for further use
 							</div>
 							<div class="col-lg-12" style="padding: 6px;">
-								<button class="btn btn-default">Extension Approval</button>
 								<button class="btn btn-default"
-									onclick="window.location.href='clientPaymentDeatils/${assignedProduct.id}'">Pay
+									onclick="SubcribeProduct('${assignedProduct.id}');">Start
+									Trail</button>
+								<button class="btn btn-default"
+									onclick="window.location.href='clientPaymentDeatils'">Buy
 									Now</button>
 							</div>
 						</div>
@@ -81,7 +73,7 @@
 		</article>
 		<div class="col-lg-12"
 			style="text-align: center; padding: 0 0 19px 0px; font-size: 20px;">Your
-			account summary as on ${todaysDate}</div>
+			account summary as on 07 Apr 2018</div>
 		<article class="col-lg-6 sortable-grid ui-sortable">
 			<!-- Widget ID (each widget will need unique ID)-->
 			<div class="jarviswidget jarviswidget-sortable" id="wid-id-0"
@@ -90,31 +82,17 @@
 					<div class="jarviswidget-editbox"></div>
 					<div class="widget-body">
 						<div class="row">
-							<div class="col-lg-8" style="padding: 15px; font-size: 21px;">
-								<span class="page-title txt-color-blueDark"> Current
-									Outstanding </span>
+							<div class="col-lg-6" style="padding: 15px; font-size: 21px;">
+								<span class="page-title txt-color-blueDark"> <i
+									class="fa-fw fa fa-home"></i> Current Outstanding
+								</span>
 							</div>
-							<div class="col-lg-4"
+							<div class="col-lg-6"
 								style="padding: 15px; font-size: 18px; text-align: right;">Status
-								- Trail</div>
+								- Not Purchased</div>
 						</div>
 						<div class="row" style="padding: 0px; text-align: center;">
-							<div class="col-lg-12" style="padding: 15px;">
-								<table style="margin: auto; width: 100%;">
-									<tr>
-										<td
-											style="text-align: center; font-size: 17px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px; width: 50%;">Amount</td>
-										<td
-											style="text-align: center; font-size: 17px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px; width: 50%;">Date</td>
-									</tr>
-									<tr>
-										<td
-											style="text-align: center; font-size: 17px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px;">1212</td>
-										<td
-											style="text-align: center; font-size: 17px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px;">${todaysDate}</td>
-									</tr>
-								</table>
-							</div>
+							<div class="col-lg-12" style="padding: 6px;">-</div>
 						</div>
 					</div>
 				</div>
@@ -128,31 +106,17 @@
 					<div class="jarviswidget-editbox"></div>
 					<div class="widget-body">
 						<div class="row">
-							<div class="col-lg-8" style="padding: 15px; font-size: 21px;">
-								<span class="page-title txt-color-blueDark"> Last Payment
-									Made </span>
+							<div class="col-lg-6" style="padding: 15px; font-size: 21px;">
+								<span class="page-title txt-color-blueDark"> <i
+									class="fa-fw fa fa-home"></i> Current Outstanding
+								</span>
 							</div>
-							<div class="col-lg-4"
+							<div class="col-lg-6"
 								style="padding: 15px; font-size: 18px; text-align: right;">Status
-								- Trail</div>
+								- Not Purchased</div>
 						</div>
 						<div class="row" style="padding: 0px; text-align: center;">
-							<div class="col-lg-12" style="padding: 15px;">
-								<table style="margin: auto; width: 100%;">
-									<tr>
-										<td
-											style="text-align: center; font-size: 17px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px; width: 50%;">Amount</td>
-										<td
-											style="text-align: center; font-size: 17px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px; width: 50%;">Date</td>
-									</tr>
-									<tr>
-										<td
-											style="text-align: center; font-size: 17px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px;">1212</td>
-										<td
-											style="text-align: center; font-size: 17px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px;">${todaysDate}</td>
-									</tr>
-								</table>
-							</div>
+							<div class="col-lg-12" style="padding: 6px;">-</div>
 						</div>
 					</div>
 				</div>
@@ -160,3 +124,28 @@
 		</article>
 	</div>
 </div>
+<div class="modal fade" id="trailPeriodModel" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content" id="trailPeriodBody"></div>
+	</div>
+</div>
+
+<script>
+	function SubcribeProduct(assignedProductId) {
+		$('#trailPeriodModel').modal({
+			show : true
+		});
+
+		$.ajax({
+			type : "GET",
+			url : "startTrail?assignedProductId=" + assignedProductId,
+			success : function(response) {
+				$("#trailPeriodBody").html(response);
+			},
+			error : function(e) {
+				console.log('Error: ' + e);
+			}
+		});
+	}
+</script>

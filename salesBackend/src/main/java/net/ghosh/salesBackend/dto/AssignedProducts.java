@@ -27,9 +27,17 @@ public class AssignedProducts implements Serializable {
 	@ManyToOne
 	private Product product;
 
+	private double monthlyPrice;
+	private double quarterlyPrice;
+	private double halfYearlyPrice;
+	private double annualPrice;
+	private double mainPrice;
+	private double tax;
+	private double totalPrice;
 	private String status;
 	private Date startdate;
 	private Date endDate;
+	private Date lastPaymentDate;
 	private int trialPeriod;
 	private String paymentDuration;
 
@@ -113,5 +121,69 @@ public class AssignedProducts implements Serializable {
 
 	public void setTermsAndCondition(boolean termsAndCondition) {
 		this.termsAndCondition = termsAndCondition;
+	}
+
+	public double getMonthlyPrice() {
+		return monthlyPrice;
+	}
+
+	public void setMonthlyPrice(double monthlyPrice) {
+		this.monthlyPrice = monthlyPrice;
+	}
+
+	public double getQuarterlyPrice() {
+		return quarterlyPrice;
+	}
+
+	public void setQuarterlyPrice(double quarterlyPrice) {
+		this.quarterlyPrice = quarterlyPrice;
+	}
+
+	public double getHalfYearlyPrice() {
+		return halfYearlyPrice;
+	}
+
+	public void setHalfYearlyPrice(double halfYearlyPrice) {
+		this.halfYearlyPrice = halfYearlyPrice;
+	}
+
+	public double getAnnualPrice() {
+		return annualPrice;
+	}
+
+	public void setAnnualPrice(double annualPrice) {
+		this.annualPrice = annualPrice;
+	}
+
+	public double getTax() {
+		return tax;
+	}
+
+	public void setTax(double tax) {
+		this.tax = tax;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public double getMainPrice() {
+		return mainPrice;
+	}
+
+	public void setMainPrice(double mainPrice) {
+		this.mainPrice = mainPrice;
+	}
+
+	public Date getLastPaymentDate() {
+		return lastPaymentDate;
+	}
+
+	public void setLastPaymentDate(Date lastPaymentDate) {
+		this.lastPaymentDate = lastPaymentDate;
 	}
 }

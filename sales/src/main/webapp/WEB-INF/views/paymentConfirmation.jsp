@@ -23,16 +23,21 @@
 
 					<div class="widget-body no-padding">
 						<div class="padding-10">
-							<div class="pull-right"></div>
+							<div class="pull-right">
+								<h1 class="font-400">invoice</h1>
+							</div>
 							<div class="clearfix"></div>
 							<br> <br>
 							<div class="row">
 								<div class="col-sm-9">
-									<h4 class="semi-bold">Rogers, Inc.</h4>
+									<h4 class="semi-bold">${company.companyName}</h4>
 									<address>
-										<strong>Mr. Simon Hedger</strong> <br> 342 Mirlington
-										Road, <br> Calfornia, CA 431464 <br> <abbr
-											title="Phone">P:</abbr> (467) 143-4317
+										<strong>${assignedProduct.client.firstName}
+											${assignedProduct.client.lastName}</strong> <br>
+										${address.addressLineOne}<br>${address.addressLineTwo}, <br>
+										${address.city}-${address.postalCode}<br>${address.state}-${address.country}
+										<br> <abbr title="Phone">P:</abbr>
+										${assignedProduct.client.contactNumber}
 									</address>
 								</div>
 								<div class="col-sm-3">
@@ -46,8 +51,15 @@
 									<div>
 										<div class="font-md">
 											<strong>PAYMENT DATE :</strong> <span class="pull-right">
-												<i class="fa fa-calendar"></i> 15/02/13
+												<i class="fa fa-calendar"></i> ${todaysDate}
 											</span>
+										</div>
+
+									</div>
+									<div>
+										<div>
+											<strong>PAYMENT DURATION :</strong> <span class="pull-right">
+												${assignedProduct.paymentDuration} </span>
 										</div>
 
 									</div>
@@ -55,7 +67,8 @@
 									<div
 										class="well well-sm  bg-color-darken txt-color-white no-border">
 										<div class="fa-lg">
-											Total Due : <span class="pull-right"> 4,972 USD** </span>
+											Total Due : <span class="pull-right">
+												${assignedProduct.totalPrice} ** </span>
 										</div>
 
 									</div>
@@ -65,32 +78,26 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th class="text-center">QTY</th>
 										<th>ITEM</th>
 										<th>DESCRIPTION</th>
 										<th>PRICE</th>
-										<th>SUBTOTAL</th>
+										<th style="text-align: right;">SUBTOTAL</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td class="text-center"><strong>1</strong></td>
-										<td><a href="javascript:void(0);">Print and Web Logo
-												Design</a></td>
-										<td>Perspiciatis unde omnis iste natus error sit
-											voluptatem accusantium doloremque laudantium totam rem
-											aperiam xplicabo.</td>
-										<td>$1,300.00</td>
-
-										<td>$1,300.00</td>
+										<td><a href="javascript:void(0);">${assignedProduct.product.productName}</a></td>
+										<td>${assignedProduct.product.description}</td>
+										<td>${assignedProduct.mainPrice}</td>
+										<td style="text-align: right;">${assignedProduct.mainPrice}</td>
 									</tr>
 									<tr>
-										<td colspan="4">Total</td>
-										<td><strong>$4,400.00</strong></td>
+										<td colspan="3">Total</td>
+										<td style="text-align: right;"><strong>${assignedProduct.mainPrice}</strong></td>
 									</tr>
 									<tr>
-										<td colspan="4">HST/GST</td>
-										<td><strong>13%</strong></td>
+										<td colspan="3">Service Tax</td>
+										<td style="text-align: right;"><strong>${assignedProduct.tax}%</strong></td>
 									</tr>
 								</tbody>
 							</table>
@@ -113,8 +120,7 @@
 									<div class="col-sm-5">
 										<div class="invoice-sum-total pull-right">
 											<h3>
-												<strong>Total: <span class="text-success">$4,972
-														USD</span></strong>
+												<strong>Total: <span class="text-success">${assignedProduct.totalPrice}</span></strong>
 											</h3>
 										</div>
 									</div>
@@ -186,7 +192,7 @@
 					<button type="button" data-dismiss="modal" class="btn btn-primary"
 						style="float: none;">Cancel</button>
 					<button type="button" class="btn btn-primary" style="float: none;"
-						onclick="window.location.href='${contextRoot}/cl/checkout'">Proceed</button>
+						onclick="window.location.href='${contextRoot}/cl/checkout/${assignedProduct.id}'">Proceed</button>
 				</footer>
 			</sf:form>
 		</div>

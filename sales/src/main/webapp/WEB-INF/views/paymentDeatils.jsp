@@ -30,49 +30,42 @@
 										<tbody>
 											<tr>
 												<td style="border: 0;"><strong>product</strong></td>
-												<td style="border: 0;"><a href="javascript:void(0);">Print
-														and Web Logo Design</a></td>
+												<td style="border: 0;"><a href="javascript:void(0);">${assignedProduct.product.productName}</a></td>
 
 											</tr>
 											<tr>
 												<td><strong>Description</strong></td>
-												<td>Perspiciatis unde omnis iste natus error sit
-													voluptatem accusantium doloremque laudantium totam rem
-													aperiam xplicabo.</td>
+												<td>${assignedProduct.product.description}</td>
 											</tr>
 											<tr>
 												<td><strong>Patment Duration</strong></td>
-												<td><form id="checkout-form"
-														class="smart-form pull-left" novalidate="novalidate">
-														<label class="select"> <select name="country">
-																<option value="0" selected="" disabled="">Country</option>
-																<option value="244">Aaland Islands</option>
-																<option value="1">Afghanistan</option>
-																<option value="2">Albania</option>
-																<option value="3">Algeria</option>
-																<option value="4">American Samoa</option>
-																<option value="5">Andorra</option>
-																<option value="6">Angola</option>
-														</select> <i></i>
+												<td><sf:form modelAttribute="assignedProduct"
+														cssClass="smart-form pull-left"
+														action="${contextRoot}/cl/updateTrail" id="form-register">
+														<label class="select" style="width: 113px;"> <sf:select
+																path="paymentDuration" id="paymentDuration">
+																<sf:options items="${durations}" />
+															</sf:select> <i></i>
 														</label>
-													</form>
-													<button class="btn btn-default" style="margin-left: 10px;">Update</button></td>
+													</sf:form>
+													<button class="btn btn-default" style="margin-left: 10px;"
+														onclick="updatePage('${assignedProduct.id}');">Update</button></td>
 											</tr>
 											<tr>
 												<td><strong>Start Date</strong></td>
-												<td></td>
+												<td>${assignedProduct.startdate}</td>
 											</tr>
 											<tr>
 												<td><strong>End Date</strong></td>
-												<td></td>
+												<td>${assignedProduct.endDate}</td>
 											</tr>
 											<tr>
 												<td><strong>Price</strong></td>
-												<td><strong>$4,400.00</strong></td>
+												<td><strong>${assignedProduct.mainPrice}</strong></td>
 											</tr>
 											<tr>
 												<td><strong>HST/GST</strong></td>
-												<td><strong>13%</strong></td>
+												<td><strong>${assignedProduct.tax}%</strong></td>
 											</tr>
 										</tbody>
 									</table>
@@ -88,25 +81,26 @@
 										<tbody>
 											<tr>
 												<td style="border: 0;"><strong>Company</strong></td>
-												<td style="border: 0;"><a href="javascript:void(0);">Print
-														and Web Logo Design</a></td>
+												<td style="border: 0;"><a href="javascript:void(0);">${company.companyName}
+														- (${company.companyUrl})</a></td>
 
 											</tr>
 											<tr>
 												<td><strong>Person</strong></td>
-												<td>Anurag Ghosh</td>
+												<td>${assignedProduct.client.firstName}
+													${assignedProduct.client.lastName}</td>
 											</tr>
 											<tr>
 												<td><strong>Contact</strong></td>
-												<td>+91 8171908867</td>
+												<td>+91 ${assignedProduct.client.contactNumber}</td>
 											</tr>
 											<tr>
 												<td><strong>Email</strong></td>
-												<td>anurag.ghosh.1014@gmail.com</td>
+												<td>${assignedProduct.client.email}</td>
 											</tr>
 											<tr>
 												<td><strong>Address</strong></td>
-												<td></td>
+												<td>${address.addressLineOne}<br>${address.addressLineTwo}<br>${address.city}-${address.postalCode}<br>${address.state}-${address.country}</td>
 											</tr>
 										</tbody>
 									</table>
@@ -118,15 +112,15 @@
 								<div class="col-sm-12">
 									<div class="invoice-sum-total" style="text-align: center;">
 										<h3>
-											<strong>Total Due: <span class="text-success">$4,972
-													USD</span></strong>
+											<strong>Total Due: <span class="text-success">${assignedProduct.totalPrice}</span></strong>
 										</h3>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="text-center" style="padding: 32px;">
-							<a href="${contextRoot}/cl/clientPaymentConfirmation"
+							<a
+								href="${contextRoot}/cl/clientPaymentConfirmation/${assignedProduct.id}"
 								class="btn btn-primary">Continue</a> <a
 								href="${contextRoot}/cl/home" class="btn btn-danger">Cancel</a>
 						</div>
@@ -137,3 +131,10 @@
 		</article>
 	</div>
 </div>
+<script>
+	function updatePage(assignProductId) {
+		var paymentDuration = $("#paymentDuration").val();
+		window.location.href = "${contextRoot}/cl/clientPaymentDeatils/"
+				+ assignProductId + "/" + paymentDuration;
+	}
+</script>

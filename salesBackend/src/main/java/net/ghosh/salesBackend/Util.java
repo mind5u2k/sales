@@ -27,6 +27,7 @@ public class Util {
 		return roles;
 	}
 
+	public static final String STATUS_ASSIGNED = "ASSIGNED";
 	public static final String STATUS_TRIAL = "Trial";
 	public static final String STAUS_ACTIVE = "Active";
 	public static final String STATUS_DEACTIVATE = "Deactivated";
@@ -42,8 +43,23 @@ public class Util {
 		return code.toString();
 	}
 
+	public static final String DURATION_MONTHLY = "Monthly";
+	public static final String DURATION_QUARTERLY = "Quarterly";
+	public static final String DURATION_HAlF_YEARLY = "Half Yearly";
+	public static final String DURATION_YEARLY = "Yearly";
+
+	public static List<String> getAllPaymentDuration() {
+		List<String> durations = new ArrayList<String>();
+		durations.add(DURATION_MONTHLY);
+		durations.add(DURATION_QUARTERLY);
+		durations.add(DURATION_HAlF_YEARLY);
+		durations.add(DURATION_YEARLY);
+		return durations;
+	}
+
 	public static void main(String[] args) {
 		System.out.println("generated verification code is ---");
 		System.out.println(generateVerificationCode());
 	}
+
 }

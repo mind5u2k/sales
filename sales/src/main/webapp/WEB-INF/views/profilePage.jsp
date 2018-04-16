@@ -138,11 +138,11 @@
 												2<span class="chevron"></span></li>
 											<li data-target="#step3"><span class="badge">3</span>Step
 												3<span class="chevron"></span></li>
+											<li data-target="#step4"><span class="badge">4</span>Step
+												4<span class="chevron"></span></li>
 										</ul>
 										<div class="actions">
-											<button type="button" class="btn btn-sm btn-primary btn-prev">
-												<i class="fa fa-arrow-left"></i>Prev
-											</button>
+											 
 											<button type="submit" class="btn btn-sm btn-success btn-next"
 												data-last="Finish">
 												Next <i class="fa fa-arrow-right"></i>
@@ -151,7 +151,9 @@
 									</div>
 									<div class="step-content">
 
-										<header> Personal Deatils </header>
+										<header>
+											<strong>Step 1 - </strong> Personal Deatils
+										</header>
 										<fieldset>
 											<div class="row">
 												<section class="col col-6">
@@ -315,7 +317,7 @@
 	<script src="${js}/plugin/jquery-form/jquery-form.min.js"></script>
 	<script
 		src="${js}/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
-	<script src="${js}/plugin/fuelux/wizard/wizard.min.js"></script>
+	 
 	<script src="${js}/myapp.js"></script>
 	<script>
 		$('#dob').datepicker({
