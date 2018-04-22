@@ -169,7 +169,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content" id="newUserBody">
 			<sf:form action="${contextRoot}/sr/addClients"
-				modelAttribute="assignedProducts" id="checkout-form"
+				modelAttribute="assignedProducts" id="addClientForm"
 				cssClass="smart-form" method="post">
 				<header
 					style="background: #ccc; margin: 0; padding: 10px 16px 10px 16px;">
@@ -179,13 +179,13 @@
 						<section class="col col-6">
 							<label class="label">First Name</label> <label class="input">
 								<i class="icon-append fa fa-user"></i> <sf:input type="text"
-									path="client.firstName" placeholder="First Name" />
+									path="client.firstName" id="firstName" placeholder="First Name" />
 							</label>
 						</section>
 						<section class="col col-6">
 							<label class="label">Last Name</label> <label class="input">
 								<i class="icon-append fa fa-user"></i> <sf:input type="text"
-									path="client.lastName" placeholder="Last Name" />
+									path="client.lastName" id="lastName" placeholder="Last Name" />
 							</label>
 						</section>
 					</div>
@@ -194,7 +194,8 @@
 						<section class="col col-6">
 							<label class="label">Email-ID</label> <label class="input">
 								<i class="icon-append fa fa-envelope-o"></i> <sf:input
-									type="text" path="client.email" placeholder="E-Mail" />
+									type="text" path="client.email" id="emailId"
+									placeholder="E-Mail" />
 							</label>
 						</section>
 						<section class="col col-6">

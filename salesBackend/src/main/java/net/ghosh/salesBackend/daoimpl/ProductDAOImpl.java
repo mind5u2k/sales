@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.ghosh.salesBackend.dao.ProductDAO;
 import net.ghosh.salesBackend.dto.AssignedProducts;
+import net.ghosh.salesBackend.dto.BillDetails;
 import net.ghosh.salesBackend.dto.Company;
 import net.ghosh.salesBackend.dto.Product;
 import net.ghosh.salesBackend.dto.User;
@@ -126,4 +127,23 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 	}
 
+	@Override
+	public boolean saveBillDetails(BillDetails billDetail) {
+		try {
+			sessionFactory.getCurrentSession().persist(billDetail);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
+	}
+
+	@Override
+	public List<BillDetails> getAllBillsbyAssignedProducts(
+			AssignedProducts assignedProduct) {
+		String selectQuery = "FROM BillDetails WHERE assignedProduct.id = :id ORDER BY id DESC";
+		return sessionFactory.getCurrentSession()
+				.createQuery(selectQuery, BillDetails.class)
+				.setParameter("id", assignedProduct.getId()).getResultList();
+
+	}
 }

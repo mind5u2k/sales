@@ -23,8 +23,11 @@
 				<div role="content">
 					<div class="jarviswidget-editbox"></div>
 					<div class="widget-body no-padding">
-						<form id="checkout-form1" class="smart-form"
-							novalidate="novalidate">
+						<form id="checkout-formss" class="smart-form" method="post"
+							novalidate="novalidate"
+							action="${contextRoot}/cl/paymentActivity">
+							<input type="hidden" id="assignedProductId"
+								name="assignedProductId" value="${assignedProduct.id}" />
 							<header> Total Ammount to be Paid </header>
 							<div class="row" style="padding: 16px 42px 14px 42px;">
 								<div class="col-xs-12" style="border-bottom: 0px solid #ccc;">
@@ -114,7 +117,9 @@
 							</fieldset>
 
 							<footer>
-								<button type="submit" class="btn btn-primary">Pay</button>
+								<button type="button"
+									onclick="window.location.href='${contextRoot}/cl/paymentActivity/${assignedProduct.id}'"
+									class="btn btn-primary">Pay</button>
 							</footer>
 						</form>
 					</div>

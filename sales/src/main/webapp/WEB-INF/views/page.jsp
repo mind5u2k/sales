@@ -66,6 +66,9 @@
 		<c:if test="${userClickClientHome == true }">
 			<%@include file="clientHome.jsp"%>
 		</c:if>
+		<c:if test="${userClickClientActiveHome == true }">
+			<%@include file="clientActiveHome.jsp"%>
+		</c:if>
 		<c:if test="${userClinkClinetHomeAssigned == true }">
 			<%@include file="clientHomeAssigned.jsp"%>
 		</c:if>
@@ -98,6 +101,12 @@
 		</c:if>
 		<c:if test="${userClickClientCheckoutform == true }">
 			<%@include file="checkout.jsp"%>
+		</c:if>
+		<c:if test="${userClickClientCheckoutConfirmationform == true }">
+			<%@include file="checkoutConfirmation.jsp"%>
+		</c:if>
+		<c:if test="${userClickPaymentHistory == true }">
+			<%@include file="paymentHistoryClient.jsp"%>
 		</c:if>
 	</div>
 	<%@include file="./shared/footer.jsp"%>

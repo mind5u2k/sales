@@ -3,7 +3,7 @@ package net.ghosh.salesBackend.dao;
 import java.util.List;
 
 import net.ghosh.salesBackend.dto.AssignedProducts;
-import net.ghosh.salesBackend.dto.Company;
+import net.ghosh.salesBackend.dto.BillDetails;
 import net.ghosh.salesBackend.dto.Product;
 import net.ghosh.salesBackend.dto.User;
 
@@ -31,4 +31,9 @@ public interface ProductDAO {
 	AssignedProducts assignProduct(AssignedProducts product);
 
 	boolean updateAssignedProduct(AssignedProducts assignedProduct);
+
+	boolean saveBillDetails(BillDetails billDetail);
+
+	List<BillDetails> getAllBillsbyAssignedProducts(
+			AssignedProducts assignedProduct);
 }

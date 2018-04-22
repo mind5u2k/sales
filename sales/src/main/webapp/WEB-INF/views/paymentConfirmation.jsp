@@ -36,8 +36,7 @@
 											${assignedProduct.client.lastName}</strong> <br>
 										${address.addressLineOne}<br>${address.addressLineTwo}, <br>
 										${address.city}-${address.postalCode}<br>${address.state}-${address.country}
-										<br> <abbr title="Phone">P:</abbr>
-										${assignedProduct.client.contactNumber}
+										<br> P : ${assignedProduct.client.contactNumber}
 									</address>
 								</div>
 								<div class="col-sm-3">

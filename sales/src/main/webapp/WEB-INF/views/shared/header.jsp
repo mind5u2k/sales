@@ -180,6 +180,12 @@
 						class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Assign
 							Products</span></a></li>
 			</security:authorize>
+			<security:authorize access="hasAuthority('CLIENT')">
+				<li id="paymentHistoryClient"><a
+					href="${contextRoot}/cl/paymentHistory"><i
+						class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Payment
+							History</span></a></li>
+			</security:authorize>
 
 			<li><div class="minifyme"
 					style="background: rgb(123, 120, 120); position: unset; text-align: center; font-size: 24px; padding: 6px 1px 31px; margin-top: 17px; cursor: pointer; width: 100%;"

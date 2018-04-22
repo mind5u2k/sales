@@ -1,5 +1,7 @@
 package net.ghosh.salesBackend;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -55,6 +57,14 @@ public class Util {
 		durations.add(DURATION_HAlF_YEARLY);
 		durations.add(DURATION_YEARLY);
 		return durations;
+	}
+
+	public static String changeTimestampToString3(Timestamp timestamp) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+				"HH:mm aaa, dd MMMMM yyyy ");
+		String string = dateFormat.format(timestamp);
+		System.out.println(string);
+		return string;
 	}
 
 	public static void main(String[] args) {

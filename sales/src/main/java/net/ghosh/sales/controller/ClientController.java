@@ -1,6 +1,8 @@
 package net.ghosh.sales.controller;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import net.ghosh.salesBackend.dao.ProductDAO;
 import net.ghosh.salesBackend.dao.UserDAO;
 import net.ghosh.salesBackend.dto.Address;
 import net.ghosh.salesBackend.dto.AssignedProducts;
+import net.ghosh.salesBackend.dto.BillDetails;
 import net.ghosh.salesBackend.dto.Company;
 import net.ghosh.salesBackend.dto.User;
 
@@ -92,9 +95,18 @@ public class ClientController {
 			assignedProduct.setEndDate(cal.getTime());
 			mv.addObject("assignedProducts", assignedProducts);
 			mv.addObject("assignedProduct", assignedProduct);
+		} else if (assignedProduct.getStatus().equals(Util.STAUS_ACTIVE)) {
+			mv.addObject("title", "Home");
+			mv.addObject("userClickClientActiveHome", true);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(assignedProduct.getStartdate());
+			assignedProduct.setStartdate(cal.getTime());
+			cal = Calendar.getInstance();
+			cal.setTime(assignedProduct.getEndDate());
+			assignedProduct.setEndDate(cal.getTime());
+			mv.addObject("assignedProducts", assignedProducts);
+			mv.addObject("assignedProduct", assignedProduct);
 		}
-		/*-mv.addObject("title", "Home");
-		mv.addObject("userClickClientHome", true);*/
 		return mv;
 	}
 
@@ -294,6 +306,102 @@ public class ClientController {
 		mv.addObject("assignedProduct", assignedProduct);
 		mv.addObject("title", "Home");
 		mv.addObject("userClickClientCheckoutform", true);
+		return mv;
+	}
+
+	@RequestMapping(value = "/paymentActivity/{id}")
+	public ModelAndView paymentActivity(@PathVariable int id) {
+		ModelAndView mv = new ModelAndView("page");
+		System.out.println("assigned product id is [" + id + "]");
+
+		User client1 = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+		AssignedProducts assignedProduct = productDAO
+				.getAssignedProductById(id);
+		Calendar calStart = Calendar.getInstance();
+		Calendar calEnd = Calendar.getInstance();
+		if (assignedProduct.getPaymentDuration().equals(Util.DURATION_MONTHLY)) {
+			assignedProduct.setMainPrice(assignedProduct.getMonthlyPrice());
+			calEnd = Calendar.getInstance();
+			calEnd.add(Calendar.MONTH, 1);
+		} else if (assignedProduct.getPaymentDuration().equals(
+				Util.DURATION_QUARTERLY)) {
+			assignedProduct.setMainPrice(assignedProduct.getMonthlyPrice());
+			calEnd = Calendar.getInstance();
+			calEnd.add(Calendar.MONTH, 3);
+		} else if (assignedProduct.getPaymentDuration().equals(
+				Util.DURATION_HAlF_YEARLY)) {
+			assignedProduct.setMainPrice(assignedProduct.getMonthlyPrice());
+			calEnd = Calendar.getInstance();
+			calEnd.add(Calendar.MONTH, 6);
+		} else if (assignedProduct.getPaymentDuration().equals(
+				Util.DURATION_YEARLY)) {
+			assignedProduct.setMainPrice(assignedProduct.getMonthlyPrice());
+			calEnd = Calendar.getInstance();
+			calEnd.add(Calendar.YEAR, 1);
+		}
+		double totalDue = assignedProduct.getMainPrice()
+				+ (assignedProduct.getMainPrice() * assignedProduct.getTax() / 100);
+		assignedProduct.setTotalPrice(totalDue);
+
+		Calendar cal1 = Calendar.getInstance();
+		assignedProduct.setLastPaymentDate(cal1.getTime());
+		assignedProduct.setStartdate(calStart.getTime());
+		assignedProduct.setEndDate(calEnd.getTime());
+		assignedProduct.setStatus(Util.STAUS_ACTIVE);
+		productDAO.updateAssignedProduct(assignedProduct);
+		mv.addObject("userClickClientCheckoutConfirmationform", true);
+
+		BillDetails billDetail = new BillDetails();
+		billDetail.setAssignedProduct(assignedProduct);
+		billDetail.setEndDate(assignedProduct.getEndDate());
+		billDetail.setMainPrice(assignedProduct.getMainPrice());
+		billDetail.setPaymentDate(assignedProduct.getLastPaymentDate());
+		billDetail.setPaymentDuration(assignedProduct.getPaymentDuration());
+		billDetail.setStartDate(assignedProduct.getStartdate());
+		billDetail.setTax(assignedProduct.getTax());
+		billDetail.setTotalPrice(assignedProduct.getTotalPrice());
+		productDAO.saveBillDetails(billDetail);
+
+		return mv;
+	}
+
+	@RequestMapping("/paymentHistory")
+	public ModelAndView paymentHistory(
+			@RequestParam(name = "assignedProductId", required = false) Integer assignedProductId) {
+		User client = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+
+		List<AssignedProducts> assignedProducts = productDAO
+				.getAssignedProducts(client);
+		AssignedProducts assignedProduct = null;
+		if (assignedProductId != null) {
+			assignedProduct = productDAO
+					.getAssignedProductById(assignedProductId);
+		} else {
+			if (assignedProducts != null && assignedProducts.size() > 0) {
+				assignedProduct = assignedProducts.get(0);
+			}
+		}
+
+		List<BillDetails> billDetails = new ArrayList<BillDetails>();
+		if (assignedProduct != null) {
+			billDetails = productDAO
+					.getAllBillsbyAssignedProducts(assignedProduct);
+		}
+
+		for (BillDetails details : billDetails) {
+			details.setPaymentDateStringFormat(Util
+					.changeTimestampToString3(new Timestamp(details
+							.getPaymentDate().getTime())));
+		}
+
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("userClickPaymentHistory", true);
+		mv.addObject("title", "Payment History");
+		mv.addObject("assignedProducts", assignedProducts);
+		mv.addObject("assignedProduct", assignedProduct);
+		mv.addObject("billDetails", billDetails);
 		return mv;
 	}
 

@@ -12,6 +12,12 @@ $(function() {
 			xhr.setRequestHeader(header, token);
 		});
 	}
+	$alert = $('.alert');
+	if ($alert.length) {
+		setTimeout(function() {
+			$alert.fadeOut('slow');
+		}, 3000);
+	}
 
 	switch (menu) {
 	case 'Home':
@@ -39,6 +45,9 @@ $(function() {
 		break;
 	case 'Assign Products':
 		$('#assignProducts').addClass('active');
+		break;
+	case 'Payment History':
+		$('#paymentHistoryClient').addClass('active');
 		break;
 	default:
 		if (menu == "Home")
@@ -387,6 +396,24 @@ $(function() {
 			error.insertAfter(element.parent());
 		}
 	});
+
+	$addClientForm = $('#addClientForm');
+	if ($addClientForm.length) {
+		$addClientForm.validate();
+		$("#firstName").rules('add', {
+			required : true,
+		});
+		$("#lastName").rules('add', {
+			required : true,
+		});
+		$("#emailId").rules('add', {
+			required : true,
+		});
+		$("#productId").rules('add', {
+			required : true,
+		});
+	}
+
 	/* validating the loginform */
 
 	// validating the product form element
@@ -431,12 +458,6 @@ $(function() {
 
 	/*------*/
 	/* for fading out the alert message after 3 seconds */
-	$alert = $('.alert');
-	if ($alert.length) {
-		setTimeout(function() {
-			$alert.fadeOut('slow');
-		}, 3000);
-	}
 
 	/*------*/
 	/* handle refresh cart */
