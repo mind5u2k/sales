@@ -99,6 +99,15 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public List<AssignedProducts> getAllAssignedProducts() {
+		String selectQuery = "FROM AssignedProducts";
+		return sessionFactory.getCurrentSession()
+				.createQuery(selectQuery, AssignedProducts.class)
+				.getResultList();
+
+	}
+
+	@Override
 	public List<AssignedProducts> getAssignedProducts(User client) {
 		String selectQuery = "FROM AssignedProducts WHERE client.id = :id ORDER BY id DESC";
 		return sessionFactory.getCurrentSession()

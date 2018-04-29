@@ -37,7 +37,8 @@
 										<ul>
 											<li class="dropdown-header">Select Product</li>
 											<c:forEach items="${assignedProducts}" var="asp">
-												<li><a href="javascript:void(0);">${asp.product.productName}</a></li>
+												<li><a
+													href="${contextRoot}/cl/home?assignedProductId=${asp.id}">${asp.product.productName}</a></li>
 											</c:forEach>
 
 										</ul>
@@ -74,6 +75,30 @@
 									Now</button> --%>
 							</div>
 						</div>
+						<c:if test="${paymentDueStatus == true }">
+							<div class="row" style="text-align: center;">
+								<!-- <div class="col-lg-3"
+								style="font-size: 81px; padding: 0 0 0 0; text-align: center; border-right: 1px solid #ccc; color: #6a6464; margin-top: 19px;">
+								<i class="fa fa-cubes"></i>
+							</div> -->
+								<div class="col-lg-12" style="padding: 10px;">
+									<span style="font-size: 18px; text-decoration: underline;">Latest
+										statement generated on 21 Apr 2018</span>
+								</div>
+								<div class="col-lg-12" style="padding: 6px; font-size: 16px;">
+									Payment Due Date : <span class="text-primary"
+										style="font-size: 14px;">${assignedProduct.endDate}</span><br>Total
+									Ammount Due : <span class="text-primary"
+										style="font-size: 14px;">${assignedProduct.totalPrice}</span>
+								</div>
+								<div class="col-lg-12" style="padding: 6px;">
+									<button class="btn btn-default"
+										onclick="window.location.href='clientPaymentDeatils/${assignedProduct.id}'">Pay
+										Now</button>
+								</div>
+							</div>
+						</c:if>
+
 					</div>
 				</div>
 			</div>
@@ -112,9 +137,9 @@
 									</tr>
 									<tr>
 										<td
-											style="text-align: center; font-size: 17px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px;">-</td>
+											style="text-align: center; font-size: 14px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px; color: #4448b2;">${assignedProduct.totalPrice}</td>
 										<td
-											style="text-align: center; font-size: 17px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px;">-</td>
+											style="text-align: center; font-size: 14px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px; color: #4448b2;">${assignedProduct.endDate}</td>
 									</tr>
 								</table>
 							</div>
@@ -152,9 +177,9 @@
 									</tr>
 									<tr>
 										<td
-											style="text-align: center; font-size: 17px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px; color: #4448b2;">${assignedProduct.totalPrice}</td>
+											style="text-align: center; font-size: 14px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px; color: #4448b2;">${assignedProduct.totalPrice}</td>
 										<td
-											style="text-align: center; font-size: 17px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px; color: #4448b2;">${assignedProduct.lastPaymentDate}</td>
+											style="text-align: center; font-size: 14px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px; color: #4448b2;">${assignedProduct.lastPaymentDate}</td>
 									</tr>
 								</table>
 							</div>

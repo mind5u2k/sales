@@ -30,14 +30,18 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<!-- <listener> <listener-class>net.ghosh.sales.service.quartzServices.MyQuartzScheduler</listener-class> 
+		</listener> -->
+
 	<!-- Load spring security config file -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/dispatcher-servlet.xml
 			/WEB-INF/spring-security.xml
+			/WEB-INF/servlet-quartz.xml
 		</param-value>
-	</context-param>
+	</context-param> 
 
 	<!-- Spring Security filter -->
 	<filter>

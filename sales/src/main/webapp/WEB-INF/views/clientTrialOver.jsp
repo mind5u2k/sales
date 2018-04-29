@@ -47,8 +47,8 @@
 							</div>
 							<div class="col-lg-4"
 								style="padding: 15px; font-size: 18px; text-align: right;">
-								Status - <span class="text-warning"><i
-									class="fa fa-exclamation-triangle"></i> Trial</span>
+								Status - <span class="text-danger"><i
+									class="fa fa-times-circle"></i> Deactivated</span>
 							</div>
 						</div>
 						<div class="row" style="text-align: center;">
@@ -61,17 +61,16 @@
 									Overview</span>
 							</div>
 							<div class="col-lg-6" style="padding: 6px; font-size: 16px;">
-								!! You are in <span class="text-warning"><i
-									class="fa fa-exclamation-triangle"></i> Trail</span> Period !!<br>Please
-								purchase the product
+								!! Your trial period for this product has expired !!<br> <span>Product
+									has been <span class="text-danger"><i
+										class="fa fa-times-circle"></i> Deactivate</span>
+								</span>
 							</div>
 							<div class="col-lg-6" style="padding: 6px; font-size: 16px;">
 								Start Date : <span class="text-primary" style="font-size: 14px;">${assignedProduct.startdate}</span><br>End
 								Date : <span class="text-primary" style="font-size: 14px;">${assignedProduct.endDate}</span>
 							</div>
 							<div class="col-lg-12" style="padding: 6px;">
-								<button class="btn btn-default"<%-- onclick="SubcribeProduct('${assignedProduct.id}');" --%>>Approval
-									Extension</button>
 								<button class="btn btn-default"
 									onclick="window.location.href='clientPaymentDeatils/${assignedProduct.id}'">Pay
 									Now</button>
@@ -92,14 +91,14 @@
 					<div class="jarviswidget-editbox"></div>
 					<div class="widget-body">
 						<div class="row">
-							<div class="col-lg-8" style="padding: 15px; font-size: 21px;">
+							<div class="col-lg-6" style="padding: 15px; font-size: 21px;">
 								<span class="page-title txt-color-blueDark"> Current
 									Outstanding </span>
 							</div>
-							<div class="col-lg-4"
+							<div class="col-lg-6"
 								style="padding: 15px; font-size: 18px; text-align: right;">
-								Status - <span class="text-warning"><i
-									class="fa fa-exclamation-triangle"></i> Trail</span>
+								Status - <span class="text-danger"><i
+									class="fa fa-times-circle"></i> Deactivated</span>
 							</div>
 						</div>
 						<div class="row" style="padding: 0px; text-align: center;">
@@ -125,14 +124,14 @@
 					<div class="jarviswidget-editbox"></div>
 					<div class="widget-body">
 						<div class="row">
-							<div class="col-lg-8" style="padding: 15px; font-size: 21px;">
+							<div class="col-lg-6" style="padding: 15px; font-size: 21px;">
 								<span class="page-title txt-color-blueDark"> Last Payment
 									Made </span>
 							</div>
-							<div class="col-lg-4"
+							<div class="col-lg-6"
 								style="padding: 15px; font-size: 18px; text-align: right;">
-								Status - <span class="text-warning"><i
-									class="fa fa-exclamation-triangle"></i> Trail</span>
+								Status - <span class="text-danger"><i
+									class="fa fa-times-circle"></i> Deactivated</span>
 							</div>
 						</div>
 						<div class="row" style="padding: 0px; text-align: center;">

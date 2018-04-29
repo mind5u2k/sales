@@ -67,7 +67,8 @@
 										class="well well-sm  bg-color-darken txt-color-white no-border">
 										<div class="fa-lg">
 											Total Due : <span class="pull-right">
-												${assignedProduct.totalPrice} ** </span>
+												${assignedProduct.totalPrice} <i class="fa fa-inr"></i> **
+											</span>
 										</div>
 
 									</div>
@@ -87,12 +88,17 @@
 									<tr>
 										<td><a href="javascript:void(0);">${assignedProduct.product.productName}</a></td>
 										<td>${assignedProduct.product.description}</td>
-										<td>${assignedProduct.mainPrice}</td>
-										<td style="text-align: right;">${assignedProduct.mainPrice}</td>
+										<td>${assignedProduct.mainPrice}&nbsp;<i
+											class="fa fa-inr"></i></td>
+										<td style="text-align: right;">${assignedProduct.mainPrice}
+											<i class="fa fa-inr"></i>
+										</td>
 									</tr>
 									<tr>
 										<td colspan="3">Total</td>
-										<td style="text-align: right;"><strong>${assignedProduct.mainPrice}</strong></td>
+										<td style="text-align: right;"><strong>${assignedProduct.mainPrice}
+												<i class="fa fa-inr"></i>
+										</strong></td>
 									</tr>
 									<tr>
 										<td colspan="3">Service Tax</td>
@@ -119,7 +125,9 @@
 									<div class="col-sm-5">
 										<div class="invoice-sum-total pull-right">
 											<h3>
-												<strong>Total: <span class="text-success">${assignedProduct.totalPrice}</span></strong>
+												<strong>Total: <span class="text-success">${assignedProduct.totalPrice}
+														<i class="fa fa-inr"></i>
+												</span></strong>
 											</h3>
 										</div>
 									</div>

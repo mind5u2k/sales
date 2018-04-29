@@ -72,6 +72,12 @@
 		<c:if test="${userClinkClinetHomeAssigned == true }">
 			<%@include file="clientHomeAssigned.jsp"%>
 		</c:if>
+		<c:if test="${userClickClientTrialOver == true }">
+			<%@include file="clientTrialOver.jsp"%>
+		</c:if>
+		<c:if test="${userClickClientOverDue == true }">
+			<%@include file="clientDueDateOver.jsp"%>
+		</c:if>
 		<c:if test="${userClickUserManagement == true }">
 			<%@include file="user.jsp"%>
 		</c:if>

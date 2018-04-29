@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class AssignedProducts implements Serializable {
@@ -34,10 +35,15 @@ public class AssignedProducts implements Serializable {
 	private double mainPrice;
 	private double tax;
 	private double totalPrice;
+	private String previousState;
 	private String status;
 	private Date startdate;
 	private Date endDate;
 	private Date lastPaymentDate;
+
+	@Transient
+	private Date StatementGenerationDate;
+
 	private int trialPeriod;
 	private String paymentDuration;
 
@@ -185,5 +191,21 @@ public class AssignedProducts implements Serializable {
 
 	public void setLastPaymentDate(Date lastPaymentDate) {
 		this.lastPaymentDate = lastPaymentDate;
+	}
+
+	public String getPreviousState() {
+		return previousState;
+	}
+
+	public void setPreviousState(String previousState) {
+		this.previousState = previousState;
+	}
+
+	public Date getStatementGenerationDate() {
+		return StatementGenerationDate;
+	}
+
+	public void setStatementGenerationDate(Date statementGenerationDate) {
+		StatementGenerationDate = statementGenerationDate;
 	}
 }

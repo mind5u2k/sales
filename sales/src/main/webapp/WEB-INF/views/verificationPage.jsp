@@ -114,9 +114,9 @@
 	<div id="main" role="main" style="margin-left: 0;">
 		<div id="content">
 			<div class="row">
-				<div class="col-md-12" style="text-align: center; padding: 14px;">
-					<span style="font-size: 24px;"> </span>
-				</div>
+				<div class="col-lg-12"
+					style="padding: 17px; text-align: center; font-size: 21px;">Email
+					Verification</div>
 				<article class="col-md-6 col-md-offset-3 sortable-grid ui-sortable">
 					<div
 						style="border-top: 1px solid #ccc; box-shadow: 5px 5px 5px #504f4f;"
@@ -131,17 +131,17 @@
 										<div class="tab-content">
 											<div class="tab-pane active" id="tab1">
 												<h3 style="text-align: center;">
-													<strong></strong> Email Verification
+													<strong></strong> Your Details
 												</h3>
 												<div class="row">
 													<div class="col-sm-12" style="padding: 0px 0 12px 0px;">
 														<table
 															style="width: 100%; text-align: center; font-size: 16px;">
 															<tr>
-																<td>Anurag Ghosh</td>
+																<td>${client.firstName}&nbsp;${client.lastName}</td>
 															</tr>
 															<tr>
-																<td>anuraghosh.1992@gmail.com</td>
+																<td>${client.email}</td>
 															</tr>
 														</table>
 													</div>

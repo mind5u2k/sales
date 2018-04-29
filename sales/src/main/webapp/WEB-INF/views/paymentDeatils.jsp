@@ -61,7 +61,8 @@
 											</tr>
 											<tr>
 												<td><strong>Price</strong></td>
-												<td><strong>${assignedProduct.mainPrice}</strong></td>
+												<td><strong>${assignedProduct.mainPrice} <i
+														class="fa fa-inr"></i></strong></td>
 											</tr>
 											<tr>
 												<td><strong>HST/GST</strong></td>
@@ -112,7 +113,9 @@
 								<div class="col-sm-12">
 									<div class="invoice-sum-total" style="text-align: center;">
 										<h3>
-											<strong>Total Due: <span class="text-success">${assignedProduct.totalPrice}</span></strong>
+											<strong>Total Due: <span class="text-success">${assignedProduct.totalPrice}
+													<i class="fa fa-inr"></i>
+											</span></strong>
 										</h3>
 									</div>
 								</div>

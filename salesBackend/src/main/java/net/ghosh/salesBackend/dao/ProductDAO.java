@@ -26,6 +26,8 @@ public interface ProductDAO {
 	List<AssignedProducts> getAllAssignedProductsBySalesRepresentative(
 			User salesRepresentative);
 
+	List<AssignedProducts> getAllAssignedProducts();
+
 	List<AssignedProducts> getAssignedProducts(User client);
 
 	AssignedProducts assignProduct(AssignedProducts product);

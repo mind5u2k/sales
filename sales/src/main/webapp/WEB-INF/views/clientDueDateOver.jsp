@@ -47,8 +47,8 @@
 							</div>
 							<div class="col-lg-4"
 								style="padding: 15px; font-size: 18px; text-align: right;">
-								Status - <span class="text-warning"><i
-									class="fa fa-exclamation-triangle"></i> Trial</span>
+								Status - <span class="text-danger"><i
+									class="fa fa-times-circle"></i> Deactivate </span>
 							</div>
 						</div>
 						<div class="row" style="text-align: center;">
@@ -61,17 +61,36 @@
 									Overview</span>
 							</div>
 							<div class="col-lg-6" style="padding: 6px; font-size: 16px;">
-								!! You are in <span class="text-warning"><i
-									class="fa fa-exclamation-triangle"></i> Trail</span> Period !!<br>Please
-								purchase the product
+								!! Your Product is in <span class="text-danger"><i
+									class="fa fa-times-circle"></i> Deactivate </span> State !!<br>
 							</div>
 							<div class="col-lg-6" style="padding: 6px; font-size: 16px;">
-								Start Date : <span class="text-primary" style="font-size: 14px;">${assignedProduct.startdate}</span><br>End
+								Purchased Date : <span class="text-primary"
+									style="font-size: 14px;">${assignedProduct.startdate}</span><br>End
 								Date : <span class="text-primary" style="font-size: 14px;">${assignedProduct.endDate}</span>
 							</div>
 							<div class="col-lg-12" style="padding: 6px;">
-								<button class="btn btn-default"<%-- onclick="SubcribeProduct('${assignedProduct.id}');" --%>>Approval
-									Extension</button>
+								<%-- <button class="btn btn-default"
+									onclick="window.location.href='clientPaymentDeatils/${assignedProduct.id}'">Pay
+									Now</button> --%>
+							</div>
+						</div>
+						<div class="row" style="text-align: center;">
+							<!-- <div class="col-lg-3"
+								style="font-size: 81px; padding: 0 0 0 0; text-align: center; border-right: 1px solid #ccc; color: #6a6464; margin-top: 19px;">
+								<i class="fa fa-cubes"></i>
+							</div> -->
+							<div class="col-lg-12" style="padding: 10px;">
+								<span style="font-size: 18px; text-decoration: underline;">Latest
+									statement generated on 21 Apr 2018</span>
+							</div>
+							<div class="col-lg-12" style="padding: 6px; font-size: 16px;">
+								Payment Due Date : <span class="text-primary"
+									style="font-size: 14px;">${assignedProduct.endDate}</span><br>Total
+								Ammount Due : <span class="text-primary"
+									style="font-size: 14px;">${assignedProduct.totalPrice}</span>
+							</div>
+							<div class="col-lg-12" style="padding: 6px;">
 								<button class="btn btn-default"
 									onclick="window.location.href='clientPaymentDeatils/${assignedProduct.id}'">Pay
 									Now</button>
@@ -98,19 +117,28 @@
 							</div>
 							<div class="col-lg-4"
 								style="padding: 15px; font-size: 18px; text-align: right;">
-								Status - <span class="text-warning"><i
-									class="fa fa-exclamation-triangle"></i> Trail</span>
+								Status - <span class="text-danger"><i
+									class="fa fa-times-circle"></i> Deactivate </span>
 							</div>
 						</div>
 						<div class="row" style="padding: 0px; text-align: center;">
-							<div class="col-lg-12" style="padding: 6px;">
-								<div class="text-center error-box">
-									<h1 class="error-text tada animated"
-										style="font-size: 32px; letter-spacing: 0px; font-weight: 100 !important;">
-										<i class="fa fa-times-circle text-danger error-icon-shadow"></i>
-										!! Product not purchased yet !!
-									</h1>
-								</div>
+							<div class="col-lg-12" style="padding: 15px;">
+								<table style="margin: auto; width: 100%;">
+									<tr>
+										<td
+											style="text-align: center; font-size: 17px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px; width: 50%;">Total
+											Amount</td>
+										<td
+											style="text-align: center; font-size: 17px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px; width: 50%;">Due
+											Date</td>
+									</tr>
+									<tr>
+										<td
+											style="text-align: center; font-size: 14px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px; color: #4448b2;">${assignedProduct.totalPrice}</td>
+										<td
+											style="text-align: center; font-size: 14px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px; color: #4448b2;">${assignedProduct.endDate}</td>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -131,19 +159,26 @@
 							</div>
 							<div class="col-lg-4"
 								style="padding: 15px; font-size: 18px; text-align: right;">
-								Status - <span class="text-warning"><i
-									class="fa fa-exclamation-triangle"></i> Trail</span>
+								Status - <span class="text-danger"><i
+									class="fa fa-times-circle"></i> Deactivate </span>
 							</div>
 						</div>
 						<div class="row" style="padding: 0px; text-align: center;">
-							<div class="col-lg-12" style="padding: 6px;">
-								<div class="text-center error-box">
-									<h1 class="error-text tada animated"
-										style="font-size: 32px; letter-spacing: 0px; font-weight: 100 !important;">
-										<i class="fa fa-times-circle text-danger error-icon-shadow"></i>
-										!! Product not purchased yet !!
-									</h1>
-								</div>
+							<div class="col-lg-12" style="padding: 15px;">
+								<table style="margin: auto; width: 100%;">
+									<tr>
+										<td
+											style="text-align: center; font-size: 17px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px; width: 50%;">Amount</td>
+										<td
+											style="text-align: center; font-size: 17px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px; width: 50%;">Date</td>
+									</tr>
+									<tr>
+										<td
+											style="text-align: center; font-size: 14px; border-right: 1px solid #ccc; padding: 0px 18px 0px 17px; color: #4448b2;">${assignedProduct.totalPrice}</td>
+										<td
+											style="text-align: center; font-size: 14px; border-left: 1px solid #ccc; padding: 0px 18px 0px 17px; color: #4448b2;">${assignedProduct.lastPaymentDate}</td>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -152,28 +187,3 @@
 		</article>
 	</div>
 </div>
-<div class="modal fade" id="trailPeriodModel" tabindex="-1"
-	role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content" id="trailPeriodBody"></div>
-	</div>
-</div>
-
-<script>
-	function SubcribeProduct(assignedProductId) {
-		$('#trailPeriodModel').modal({
-			show : true
-		});
-
-		$.ajax({
-			type : "GET",
-			url : "startTrail?assignedProductId=" + assignedProductId,
-			success : function(response) {
-				$("#trailPeriodBody").html(response);
-			},
-			error : function(e) {
-				console.log('Error: ' + e);
-			}
-		});
-	}
-</script>

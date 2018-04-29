@@ -38,7 +38,8 @@
 										<ul>
 											<li class="dropdown-header">Select Product</li>
 											<c:forEach items="${assignedProducts}" var="asp">
-												<li><a href="javascript:void(0);">${asp.product.productName}</a></li>
+												<li><a
+													href="${contextRoot}/cl/home?assignedProductId=${asp.id}">${asp.product.productName}</a></li>
 											</c:forEach>
 
 										</ul>
@@ -63,7 +64,7 @@
 									onclick="SubcribeProduct('${assignedProduct.id}');">Start
 									Trail</button>
 								<button class="btn btn-default"
-									onclick="window.location.href='clientPaymentDeatils'">Buy
+									onclick="window.location.href='clientPaymentDeatils/${assignedProduct.id}'">Buy
 									Now</button>
 							</div>
 						</div>
@@ -92,7 +93,15 @@
 								- Not Purchased</div>
 						</div>
 						<div class="row" style="padding: 0px; text-align: center;">
-							<div class="col-lg-12" style="padding: 6px;">-</div>
+							<div class="col-lg-12" style="padding: 6px;">
+								<div class="text-center error-box">
+									<h1 class="error-text tada animated"
+										style="font-size: 32px; letter-spacing: 0px; font-weight: 100 !important;">
+										<i class="fa fa-times-circle text-danger error-icon-shadow"></i>
+										!! Product not purchased yet !!
+									</h1>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -116,7 +125,15 @@
 								- Not Purchased</div>
 						</div>
 						<div class="row" style="padding: 0px; text-align: center;">
-							<div class="col-lg-12" style="padding: 6px;">-</div>
+							<div class="col-lg-12" style="padding: 6px;">
+								<div class="text-center error-box">
+									<h1 class="error-text tada animated"
+										style="font-size: 32px; letter-spacing: 0px; font-weight: 100 !important;">
+										<i class="fa fa-times-circle text-danger error-icon-shadow"></i>
+										!! Product not purchased yet !!
+									</h1>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

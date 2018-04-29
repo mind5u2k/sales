@@ -4,8 +4,10 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import net.ghosh.sales.service.MailNotificationServices.MailNotification;
 import net.ghosh.salesBackend.Util;
 import net.ghosh.salesBackend.dao.ProductDAO;
 import net.ghosh.salesBackend.dao.UserDAO;
@@ -53,6 +55,7 @@ public class ClientController {
 				.getEmail());
 		if (!client.isTwoStepVerfication()) {
 			ModelAndView mv = new ModelAndView("verificationPage");
+			mv.addObject("client", client);
 			return mv;
 		} else if (!client.isAllDeatilsStatus()) {
 			ModelAndView mv = new ModelAndView("profilePage");
@@ -106,6 +109,25 @@ public class ClientController {
 			assignedProduct.setEndDate(cal.getTime());
 			mv.addObject("assignedProducts", assignedProducts);
 			mv.addObject("assignedProduct", assignedProduct);
+
+			Date date = Calendar.getInstance().getTime();
+			if (date.compareTo(assignedProduct.getEndDate()) < 10) {
+				mv.addObject("paymentDueStatus", true);
+			}
+
+		} else if (assignedProduct.getStatus().equals(Util.STATUS_DEACTIVATE)) {
+			if (assignedProduct.getPreviousState().equals(Util.STATUS_TRIAL)) {
+				mv.addObject("title", "Home");
+				mv.addObject("userClickClientTrialOver", true);
+				mv.addObject("assignedProducts", assignedProducts);
+				mv.addObject("assignedProduct", assignedProduct);
+			} else if (assignedProduct.getPreviousState().equals(
+					Util.STAUS_ACTIVE)) {
+				mv.addObject("title", "Home");
+				mv.addObject("userClickClientOverDue", true);
+				mv.addObject("assignedProducts", assignedProducts);
+				mv.addObject("assignedProduct", assignedProduct);
+			}
 		}
 		return mv;
 	}
@@ -120,6 +142,9 @@ public class ClientController {
 		String otp = Util.generateVerificationCode();
 		client.setVerificationCode(otp);
 		userDAO.updateUser(client);
+
+		MailNotification.sendMail(client.getEmail(), "", "", "OTP - SLATE",
+				"Your OTP is - " + otp);
 		mv.addObject("sentOtp", "OTP has been sent successfully");
 		return mv;
 	}
