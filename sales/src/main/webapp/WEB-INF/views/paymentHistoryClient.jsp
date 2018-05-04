@@ -95,7 +95,8 @@
 											<td>${bd.billId}</td>
 											<td>${bd.paymentDuration}</td>
 											<td class="btn btn-default"
-												style="text-align: center; width: 43px; font-size: 16px; padding: 6px 0 6px 0;"><i
+												style="text-align: center; width: 43px; font-size: 16px; padding: 6px 0 6px 0;"
+												onclick="window.location.href='${contextRoot}/downloadBill'"><i
 												class="fa fa-file-pdf-o"></i></td>
 										</tr>
 									</c:forEach>

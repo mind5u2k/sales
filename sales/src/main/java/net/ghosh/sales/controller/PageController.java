@@ -6,9 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.ghosh.sales.service.PdfGeneration.PdfGeneration;
 import net.ghosh.salesBackend.Util;
 import net.ghosh.salesBackend.dao.ProductDAO;
 import net.ghosh.salesBackend.dao.UserDAO;
+import net.ghosh.salesBackend.dto.Address;
+import net.ghosh.salesBackend.dto.BillDetails;
 import net.ghosh.salesBackend.dto.Product;
 import net.ghosh.salesBackend.dto.User;
 
@@ -165,6 +168,39 @@ public class PageController {
 		}
 
 		mv.addObject("products", products);
+		return mv;
+	}
+
+	@RequestMapping(value = "/downloadBill")
+	public void downloadBill(HttpServletRequest request,
+			HttpServletResponse response) {
+		PdfGeneration generation = new PdfGeneration();
+		try {
+			generation.generateBill(request, response, new BillDetails());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@RequestMapping(value = "/editProfile")
+	public ModelAndView downloadBill() {
+		User client = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("userClickProfilePage", true);
+		mv.addObject("title", "Edit Profile");
+		mv.addObject("client", client);
+
+		Address address = null;
+		address = userDAO.getAddressByUser(client.getId());
+		if (address == null) {
+			address = new Address();
+			address.setUser(client);
+			mv.addObject("address", address);
+		} else {
+			mv.addObject("address", address);
+		}
 		return mv;
 	}
 

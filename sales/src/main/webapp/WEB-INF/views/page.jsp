@@ -48,6 +48,9 @@
 	class="desktop-detected voice-command-active service-not-allowed pace-done fixed-header fixed-navigation">
 	<%@include file="./shared/header.jsp"%>
 	<div id="main" role="main">
+		<c:if test="${userClickProfilePage == true }">
+			<%@include file="editProfilePage.jsp"%>
+		</c:if>
 		<c:if test="${userClickSuperAdminHome == true }">
 			<%@include file="superAdminHome.jsp"%>
 		</c:if>
