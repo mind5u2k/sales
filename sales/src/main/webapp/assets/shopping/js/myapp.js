@@ -72,6 +72,59 @@ $(function() {
 
 	pageSetUp();
 
+	var $registerForm = $("#addressForm").validate({
+
+		// Rules for form validation
+		rules : {
+			addressLineOne : {
+				required : true
+			},
+			city : {
+				required : true
+			},
+			postalCode : {
+				required : true,
+				digits : true
+			},
+			state : {
+				required : true
+			},
+			country : {
+				required : true
+			},
+			addressLineTwo : {
+				required : true
+			}
+		},
+
+		messages : {
+			addressLineOne : {
+				required : 'Please Enter Address Line 1'
+			},
+			addressLineTwo : {
+				required : 'Please enter Address Line 2'
+			},
+			city : {
+				required : 'Please enter city'
+			},
+			postalCode : {
+				required : 'Please enter postal code',
+				digits : 'Digits Only Please'
+			},
+			state : {
+				required : 'please enter state'
+			},
+			country : {
+				required : 'please enter country'
+			}
+		},
+
+		// Do not change code below
+		errorPlacement : function(error, element) {
+			error.insertAfter(element.parent());
+		}
+	});
+
 	var $registerForm = $("#smart-form-register").validate({
 
 		// Rules for form validation

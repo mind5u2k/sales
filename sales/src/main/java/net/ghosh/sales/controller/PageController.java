@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.ghosh.sales.model.UpdatePassword;
 import net.ghosh.sales.service.PdfGeneration.PdfGeneration;
 import net.ghosh.salesBackend.Util;
 import net.ghosh.salesBackend.dao.ProductDAO;
@@ -20,9 +21,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,6 +38,9 @@ public class PageController {
 
 	@Autowired
 	private GlobalController globalController;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private UserDAO userDAO;
@@ -184,7 +191,8 @@ public class PageController {
 	}
 
 	@RequestMapping(value = "/editProfile")
-	public ModelAndView downloadBill() {
+	public ModelAndView downloadBill(
+			@RequestParam(name = "status", required = false) String status) {
 		User client = userDAO.getByEmail(globalController.getUserModel()
 				.getEmail());
 		ModelAndView mv = new ModelAndView("page");
@@ -201,7 +209,97 @@ public class PageController {
 		} else {
 			mv.addObject("address", address);
 		}
+
+		if (status != null) {
+			if (status.equals("personalDeatilsUpdated")) {
+				mv.addObject("personalDeatilsMsg",
+						"Personal Deatils has been updated successfully");
+			} else if (status.equals("addressUpdated")) {
+				mv.addObject("addressMsg",
+						"Address has been updated successfully");
+			}
+		}
+
 		return mv;
+	}
+
+	@RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
+	public String updateProfile(@ModelAttribute("client") User client) {
+		User client1 = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+		client1.setFirstName(client.getFirstName());
+		client1.setLastName(client.getLastName());
+		client1.setContactNumber(client.getContactNumber());
+		client1.setDob(client.getDob());
+		client1.setEmail(client.getEmail());
+		userDAO.updateUser(client1);
+		return "redirect:/editProfile?status=personalDeatilsUpdated";
+	}
+
+	@RequestMapping(value = "/updateAddress", method = RequestMethod.POST)
+	public String updateAddress(@ModelAttribute("address") Address address) {
+
+		User client1 = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+
+		Address address2 = userDAO.getAddress(address.getId());
+		if (address2 == null) {
+			address.setUser(client1);
+			userDAO.addAddress(address);
+		} else {
+			address2.setAddressLineOne(address.getAddressLineOne());
+			address2.setAddressLineTwo(address.getAddressLineTwo());
+			address2.setCity(address.getCity());
+			address2.setCountry(address.getCountry());
+			address2.setPostalCode(address.getPostalCode());
+			address2.setState(address.getState());
+			userDAO.updateAddress(address2);
+		}
+		return "redirect:/editProfile?status=addressUpdated";
+	}
+
+	@RequestMapping(value = "/updatePassword")
+	public ModelAndView updatePassword(
+			@RequestParam(name = "status", required = false) String status) {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("userClickUpdatePassword", true);
+		mv.addObject("title", "Update Password");
+		UpdatePassword password = new UpdatePassword();
+		mv.addObject("password", password);
+
+		if (status != null) {
+			if (status.equals("updated")) {
+				mv.addObject("msg",
+						"!! Password has been updated successfully !!");
+			} else if (status.equals("failed")) {
+				mv.addObject("errorMsg",
+						"!! You have entered wrong password !!");
+			}
+		}
+
+		return mv;
+	}
+
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	public String changePassword(
+			@ModelAttribute("password") UpdatePassword password) {
+
+		User client1 = userDAO.getByEmail(globalController.getUserModel()
+				.getEmail());
+
+		String newPassword = passwordEncoder.encode(password.getPassword());
+		boolean st = passwordEncoder.matches(password.getOldPassword(),
+				client1.getPassword());
+
+		System.out.println(st);
+
+		if (st) {
+			client1.setPassword(newPassword);
+			userDAO.updateUser(client1);
+			return "redirect:/updatePassword?status=updated";
+		} else {
+			return "redirect:/updatePassword?status=failed";
+		}
 	}
 
 }

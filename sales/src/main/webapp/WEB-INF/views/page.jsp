@@ -51,6 +51,9 @@
 		<c:if test="${userClickProfilePage == true }">
 			<%@include file="editProfilePage.jsp"%>
 		</c:if>
+		<c:if test="${userClickUpdatePassword == true }">
+			<%@include file="updatePassword.jsp"%>
+		</c:if>
 		<c:if test="${userClickSuperAdminHome == true }">
 			<%@include file="superAdminHome.jsp"%>
 		</c:if>

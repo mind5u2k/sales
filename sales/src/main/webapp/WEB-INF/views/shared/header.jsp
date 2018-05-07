@@ -136,8 +136,8 @@
 				style="padding: 5px 0 5px 0px; text-align: center;">
 				<a class="btn btn-danger" style="margin: 0; color: #fff;"
 					href="${contextRoot}/editProfile">Profile</a> <a
-					class="btn btn-success" href="#" style="margin: 0; color: #fff;">Update
-					Password</a>
+					class="btn btn-success" href="${contextRoot}/updatePassword"
+					style="margin: 0; color: #fff;">Update Password</a>
 			</div>
 		</div>
 	</div>
